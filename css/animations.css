@@ -1,0 +1,230 @@
+/* ===========================================
+   孙琦个人网站 — 动画与特效系统
+   =========================================== */
+
+/* --- 入场动画基础类 --- */
+.rv   { opacity: 0; transform: translateY(26px);  transition: opacity .85s var(--ease-expo), transform .85s var(--ease-expo); will-change: opacity, transform; }
+.rv-s { opacity: 0; transform: scale(.85);         transition: opacity .85s var(--ease-expo), transform 1s var(--ease-spring); will-change: opacity, transform; }
+.rv-l { opacity: 0; transform: translateX(-38px);  transition: opacity .85s var(--ease-expo), transform .85s var(--ease-expo); will-change: opacity, transform; }
+.rv-r { opacity: 0; transform: translateX(38px);   transition: opacity .85s var(--ease-expo), transform .85s var(--ease-expo); will-change: opacity, transform; }
+.rv-b { opacity: 0; filter: blur(16px); transform: scale(.97); transition: opacity 1.3s var(--ease-expo), filter 1.3s var(--ease-expo), transform 1.3s var(--ease-expo); will-change: opacity, filter, transform; }
+.rv-pop { opacity: 0; transform: scale(.4) rotate(-12deg); transition: opacity .5s var(--ease-expo), transform .65s var(--ease-spring); will-change: opacity, transform; }
+
+/* 可见时触发 */
+.slide.visible .rv,
+.slide.visible .rv-s,
+.slide.visible .rv-l,
+.slide.visible .rv-r,
+.slide.visible .rv-b,
+.slide.visible .rv-pop { opacity: 1; transform: none; filter: none; }
+
+/* 延迟节奏 */
+.d1 { transition-delay: .08s }
+.d2 { transition-delay: .2s }
+.d3 { transition-delay: .35s }
+.d4 { transition-delay: .5s }
+.d5 { transition-delay: .68s }
+.d6 { transition-delay: .85s }
+.d7 { transition-delay: 1.05s }
+
+/* --- 浮动动画 --- */
+@keyframes heroFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25%      { transform: translateY(-16px) rotate(-4deg); }
+    60%      { transform: translateY(-8px) rotate(2.5deg); }
+}
+
+@keyframes drift {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50%      { transform: translateY(-12px) rotate(6deg); }
+}
+
+@keyframes ringPulse {
+    0%, 100% { opacity: .4; transform: translate(-50%, -50%) scale(1); }
+    50%      { opacity: .15; transform: translate(-50%, -50%) scale(1.05); }
+}
+
+@keyframes dotPulse {
+    0%, 100% { opacity: .3; transform: scale(.7); }
+    50%      { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes chromaShift {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+}
+
+@keyframes hintPulse {
+    0%, 100% { opacity: .4; }
+    50%      { opacity: 1; }
+}
+
+/* --- 背景 Blob --- */
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+    filter: blur(80px);
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* --- 装饰漂浮元素 --- */
+.deco {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.07;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* --- 进度条 --- */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    z-index: 9999;
+    background: linear-gradient(90deg, var(--blush), var(--wisteria), var(--pistachio));
+    background-size: 300% 100%;
+    animation: chromaShift 6s ease infinite;
+    transition: width .45s var(--ease-expo);
+    will-change: width;
+    transform: translateZ(0);
+}
+
+/* --- 导航点 --- */
+.nav-dots {
+    position: fixed;
+    right: clamp(.5rem, 1.4vw, 1rem);
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(6px, 1vh, 10px);
+    z-index: 9998;
+}
+
+.nav-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 1.5px solid var(--ink-ghost);
+    background: transparent;
+    cursor: pointer;
+    transition: all .35s var(--ease-spring);
+    padding: 0;
+}
+
+.nav-dot:hover {
+    border-color: var(--blush-mid);
+    transform: scale(1.4);
+}
+
+.nav-dot.active {
+    background: var(--blush);
+    border-color: var(--blush);
+    box-shadow: 0 0 8px rgba(232, 120, 138, .45);
+    transform: scale(1.15);
+}
+
+/* --- 键盘提示 --- */
+.keyboard-hint {
+    position: fixed;
+    bottom: clamp(.4rem, 1vh, .7rem);
+    right: clamp(.4rem, 1.2vw, .8rem);
+    font-size: var(--fs-xs);
+    color: var(--ink-ghost);
+    opacity: .5;
+    z-index: 9998;
+    letter-spacing: .18em;
+    font-weight: 300;
+}
+
+/* --- 幻灯片编号 --- */
+.sn {
+    position: absolute;
+    top: clamp(.8rem, 2.5vw, 1.8rem);
+    left: clamp(.8rem, 2.5vw, 1.8rem);
+    font-family: var(--ff-display);
+    font-size: clamp(.7rem, 1.2vw, 1rem);
+    color: var(--ink-whisper);
+    font-weight: 300;
+    letter-spacing: .15em;
+    z-index: 3;
+}
+
+/* --- 鼠标拖尾 Canvas --- */
+#cursorTrail {
+    position: fixed;
+    inset: 0;
+    z-index: 9989;
+    pointer-events: none;
+}
+
+/* --- SVG 噪点纹理（温暖感）--- */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9990;
+    pointer-events: none;
+    opacity: 0.026;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px;
+}
+
+/* --- 玻璃态卡片 --- */
+.glass {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: clamp(14px, 2.2vw, 22px);
+    box-shadow: 0 6px 28px rgba(90, 60, 120, .06), inset 0 1px 0 rgba(255, 255, 255, .35);
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* --- 通用原子组件 --- */
+.divider {
+    width: clamp(32px, 5vw, 56px);
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--blush-soft), var(--wisteria-soft));
+    border-radius: 2px;
+    opacity: .7;
+}
+
+.label {
+    font-family: var(--ff-body);
+    font-size: var(--fs-xs);
+    color: var(--ink-faint);
+    letter-spacing: .35em;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.sec-title {
+    font-family: var(--ff-display);
+    font-size: var(--fs-h2);
+    font-weight: 600;
+    color: var(--ink);
+    text-align: center;
+    line-height: 1.25;
+}
+
+.sec-title em {
+    font-style: italic;
+    color: var(--blush);
+}
+
+/* --- 减少动画偏好 --- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.2s !important;
+    }
+    html { scroll-behavior: auto; }
+}

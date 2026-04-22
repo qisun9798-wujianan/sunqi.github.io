@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>孙琦 — 个人网站</title>
+    <meta name="description" content="孙琦的个人简历、作品集与博客">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200..700;1,9..40,300..400&family=JetBrains+Mono:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400..800;1,400..600&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Chrome -->
+    <div class="progress-bar" id="progressBar"></div>
+    <nav class="nav-dots" id="navDots" aria-label="Slide navigation"></nav>
+    <div class="keyboard-hint">← → 切换页面</div>
+    <canvas id="cursorTrail"></canvas>
+
+    <!-- ========================================
+         P1 — HERO 首页封面
+         ======================================== -->
+    <section class="slide slide-hero" id="hero">
+        <div class="blob" style="width:clamp(350px,55vw,700px);height:clamp(350px,55vw,700px);background:var(--blush-pale);top:-25%;right:-20%;opacity:.45;"></div>
+        <div class="blob" style="width:clamp(250px,40vw,500px);height:clamp(250px,40vw,500px);background:var(--wisteria-pale);bottom:-20%;left:-12%;opacity:.35;"></div>
+
+        <div class="hero-inner">
+            <div class="hero-avatar-wrap rv-s d1">
+                <div class="hero-ring"></div>
+                <div class="hero-ring r2"></div>
+                <!-- TODO: 替换为你的头像图片路径，如 assets/images/avatar.jpg -->
+                <img class="hero-avatar" src="" alt="孙琦头像">
+            </div>
+
+            <div class="hero-text">
+                <h1 class="hero-name rv d2">
+                    孙琦
+                    <span class="line2">设计师 / 创作者</span>
+                </h1>
+                <div class="divider rv d3"></div>
+                <p class="hero-bio rv d3">用设计讲故事 · 用影像记录世界</p>
+                <span class="hero-badge rv d4"><span class="dot"></span>OPEN TO WORK</span>
+
+                <!-- 社交链接 -->
+                <div class="social-links rv d5">
+                    <!-- GitHub -->
+                    <a class="social-link" href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+                        <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </a>
+                    <!-- 邮箱 -->
+                    <a class="social-link" href="mailto:your.email@example.com" aria-label="Email" title="Email">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </a>
+                    <!-- LinkedIn -->
+                    <a class="social-link" href="https://linkedin.com/in/YOUR_USERNAME" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+                        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <!-- 微信/其他可继续添加 -->
+                </div>
+            </div>
+        </div>
+        <span class="sn">01</span>
+    </section>
+
+    <!-- ========================================
+         P2 — ABOUT 关于我
+         ======================================== -->
+    <section class="slide slide-about" id="about">
+        <div class="blob" style="width:clamp(300px,45vw,550px);height:clamp(300px,45vw,550px);background:var(--wisteria-pale);top:-15%;left:-15%;opacity:.35;"></div>
+        <div class="blob" style="width:clamp(250px,38vw,450px);height:clamp(250px,38vw,450px);background:var(--pistachio-pale);bottom:-18%;right:-12%;opacity:.3;"></div>
+
+        <div class="slide-content">
+            <span class="label rv d1">ABOUT ME</span>
+            <h2 class="sec-title rv d1">关于 <em>我</em></h2>
+            <div class="divider rv d2"></div>
+
+            <div class="about-layout rv d3">
+                <div class="about-text">
+                    <p class="about-desc">
+                        你好，我是<strong>孙琦</strong>。
+                    </p>
+                    <p class="about-desc">
+                        <!-- TODO: 替换为你的个人简介 -->
+                        一名热爱设计与影像的创作者。我相信好的设计不只是视觉的呈现，更是故事的讲述。
+                        在这里，你可以了解我的工作经历、浏览我的视频作品，以及阅读我的思考与分享。
+                    </p>
+                    <p class="about-desc">
+                        目前专注于 <strong>品牌视觉设计</strong> 与 <strong>影像创作</strong>，
+                        同时也在探索技术与艺术的交叉领域。
+                    </p>
+
+                    <div class="skill-tags rv d4">
+                        <span class="skill-tag"><span class="pip pip-blush"></span>品牌设计</span>
+                        <span class="skill-tag"><span class="pip pip-wisteria"></span>视频剪辑</span>
+                        <span class="skill-tag"><span class="pip pip-pistachio"></span>UI/UX</span>
+                        <span class="skill-tag"><span class="pip pip-blush"></span>动效设计</span>
+                        <span class="skill-tag"><span class="pip pip-wisteria"></span>摄影</span>
+                        <!-- TODO: 添加或修改技能标签 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <span class="sn">02</span>
+    </section>
+
+    <!-- ========================================
+         P3 — EXPERIENCE 工作经历
+         ======================================== -->
+    <section class="slide slide-exp" id="experience">
+        <div class="blob" style="width:clamp(280px,40vw,480px);height:clamp(280px,40vw,480px);background:var(--blush-pale);top:-10%;right:-10%;opacity:.3;"></div>
+
+        <div class="slide-content">
+            <span class="label rv d1">EXPERIENCE</span>
+            <h2 class="sec-title rv d1">工作 <em>经历</em></h2>
+            <div class="divider rv d2"></div>
+
+            <div class="timeline rv d3">
+                <!-- TODO: 替换为你的真实工作经历 -->
+                <div class="timeline-item rv-l d3">
+                    <div class="timeline-date">2024 — 至今</div>
+                    <div class="timeline-title">高级设计师</div>
+                    <div class="timeline-company">某某科技公司</div>
+                    <div class="timeline-desc">负责品牌视觉体系搭建与产品界面设计，主导多个重点项目的设计落地。</div>
+                </div>
+
+                <div class="timeline-item rv-r d4">
+                    <div class="timeline-date">2022 — 2024</div>
+                    <div class="timeline-title">视觉设计师</div>
+                    <div class="timeline-company">创意工作室</div>
+                    <div class="timeline-desc">服务多个品牌客户，完成从概念到落地的全流程视觉设计。</div>
+                </div>
+
+                <div class="timeline-item rv-l d5">
+                    <div class="timeline-date">2020 — 2022</div>
+                    <div class="timeline-title">初级设计师</div>
+                    <div class="timeline-company">设计咨询公司</div>
+                    <div class="timeline-desc">参与品牌设计项目，积累视觉设计与客户沟通能力。</div>
+                </div>
+            </div>
+        </div>
+        <span class="sn">03</span>
+    </section>
+
+
+    <!-- ========================================
+         P4 — WORKS 视频作品集
+         ======================================== -->
+    <section class="slide slide-works" id="works">
+        <div class="blob" style="width:clamp(300px,42vw,500px);height:clamp(300px,42vw,500px);background:var(--blush-pale);top:-12%;left:-12%;opacity:.3;"></div>
+        <div class="blob" style="width:clamp(220px,35vw,400px);height:clamp(220px,35vw,400px);background:var(--honey-soft);bottom:-15%;right:-8%;opacity:.2;"></div>
+
+        <div class="slide-content">
+            <span class="label rv d1">PORTFOLIO</span>
+            <h2 class="sec-title rv d1">视频 <em>作品</em></h2>
+            <div class="divider rv d2"></div>
+
+            <div class="work-grid rv d3">
+                <!-- 作品卡片 1 -->
+                <!-- TODO: 替换 data-bvid 为你的 B站视频 BV 号，替换封面图路径 -->
+                <div class="work-card" data-bvid="BV1xx411c7mD">
+                    <div class="work-cover-wrap">
+                        <img class="work-cover" src="" alt="作品封面1">
+                        <div class="work-play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <div class="work-title">作品标题一</div>
+                        <div class="work-desc">这是作品的简短描述，介绍创作背景和核心概念。</div>
+                        <span class="work-tag">品牌短片</span>
+                    </div>
+                </div>
+
+                <!-- 作品卡片 2 -->
+                <div class="work-card" data-bvid="BV1xx411c7mD">
+                    <div class="work-cover-wrap">
+                        <img class="work-cover" src="" alt="作品封面2">
+                        <div class="work-play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <div class="work-title">作品标题二</div>
+                        <div class="work-desc">另一个精彩的作品，展示了不同的风格和技法。</div>
+                        <span class="work-tag">纪录片</span>
+                    </div>
+                </div>
+
+                <!-- 作品卡片 3 -->
+                <div class="work-card" data-bvid="BV1xx411c7mD">
+                    <div class="work-cover-wrap">
+                        <img class="work-cover" src="" alt="作品封面3">
+                        <div class="work-play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                    <div class="work-info">
+                        <div class="work-title">作品标题三</div>
+                        <div class="work-desc">探索视觉叙事的边界，用影像传递情感。</div>
+                        <span class="work-tag">实验影像</span>
+                    </div>
+                </div>
+
+                <!-- TODO: 继续添加更多作品卡片... -->
+            </div>
+        </div>
+        <span class="sn">04</span>
+    </section>
+
+    <!-- ========================================
+         P5 — BLOG 博客文章
+         ======================================== -->
+    <section class="slide slide-blog" id="blog">
+        <div class="blob" style="width:clamp(280px,40vw,460px);height:clamp(280px,40vw,460px);background:var(--pistachio-pale);top:-10%;right:-10%;opacity:.3;"></div>
+
+        <div class="slide-content">
+            <span class="label rv d1">BLOG</span>
+            <h2 class="sec-title rv d1">思考与 <em>分享</em></h2>
+            <div class="divider rv d2"></div>
+
+            <div class="blog-grid rv d3">
+                <!-- TODO: 替换为真实博客文章链接和标题 -->
+                <a class="blog-card glass rv-l d3" href="#blog">
+                    <div class="blog-date">2026.04.15</div>
+                    <div class="blog-title">如何用设计讲好品牌故事</div>
+                    <div class="blog-excerpt">从视觉语言到情感共鸣，探索品牌设计的核心方法论...</div>
+                    <div class="blog-tag">设计思考 →</div>
+                </a>
+
+                <a class="blog-card glass rv-r d4" href="#blog">
+                    <div class="blog-date">2026.03.22</div>
+                    <div class="blog-title">视频创作中的色彩心理学</div>
+                    <div class="blog-excerpt">色彩不只是视觉元素，更是情绪的载体。聊聊我在实践中...</div>
+                    <div class="blog-tag">影像创作 →</div>
+                </a>
+
+                <a class="blog-card glass rv-l d5" href="#blog">
+                    <div class="blog-date">2026.02.10</div>
+                    <div class="blog-title">从 0 到 1 搭建个人品牌</div>
+                    <div class="blog-excerpt">分享我建立个人视觉体系和线上 presence 的完整流程...</div>
+                    <div class="blog-tag">个人成长 →</div>
+                </a>
+
+                <a class="blog-card glass rv-r d6" href="#blog">
+                    <div class="blog-date">2026.01.05</div>
+                    <div class="blog-title">2025 年度设计工具推荐</div>
+                    <div class="blog-excerpt">整理过去一年里真正提升效率的设计工具与资源...</div>
+                    <div class="blog-tag">工具推荐 →</div>
+                </a>
+            </div>
+        </div>
+        <span class="sn">05</span>
+    </section>
+
+    <!-- ========================================
+         P6 — CONTACT 联系方式
+         ======================================== -->
+    <section class="slide slide-contact" id="contact">
+        <div class="blob" style="width:clamp(320px,48vw,580px);height:clamp(320px,48vw,580px);background:var(--blush-pale);top:-20%;left:-15%;opacity:.3;"></div>
+        <div class="blob" style="width:clamp(250px,38vw,420px);height:clamp(250px,38vw,420px);background:var(--wisteria-pale);bottom:-15%;right:-10%;opacity:.25;"></div>
+
+        <div class="slide-content">
+            <span class="label rv d1">CONTACT</span>
+            <h2 class="sec-title rv d1">联系 <em>我</em></h2>
+            <div class="divider rv d2"></div>
+
+            <p class="end-narrative rv d3">期待与你的合作与交流</p>
+            <h3 class="end-slogan rv d4">
+                Let's <span class="hl">Create</span><br>Together
+            </h3>
+            <div class="divider rv d5" style="margin:0 auto;"></div>
+
+            <div class="contact-links rv d5">
+                <!-- GitHub -->
+                <a class="contact-link" href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </div>
+                    <div class="contact-label">GitHub</div>
+                    <div class="contact-sublabel">@YOUR_USERNAME</div>
+                </a>
+
+                <span class="step-arrow" style="font-size:clamp(1rem,2vw,1.5rem);color:var(--ink-ghost);font-weight:200;">·</span>
+
+                <!-- Email -->
+                <a class="contact-link" href="mailto:your.email@example.com">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </div>
+                    <div class="contact-label">Email</div>
+                    <div class="contact-sublabel">取得联系</div>
+                </a>
+
+                <span class="step-arrow" style="font-size:clamp(1rem,2vw,1.5rem);color:var(--ink-ghost);font-weight:200;">·</span>
+
+                <!-- LinkedIn -->
+                <a class="contact-link" href="https://linkedin.com/in/YOUR_USERNAME" target="_blank" rel="noopener">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </div>
+                    <div class="contact-label">LinkedIn</div>
+                    <div class="contact-sublabel">职业档案</div>
+                </a>
+            </div>
+
+            <!-- GitHub 数据展示 -->
+            <div class="github-stats rv d6">
+                <div class="github-stat">
+                    <div class="github-stat-num" id="ghRepos">—</div>
+                    <div class="github-stat-label">REPOS</div>
+                </div>
+                <div class="github-stat">
+                    <div class="github-stat-num" id="ghFollowers">—</div>
+                    <div class="github-stat-label">FOLLOWERS</div>
+                </div>
+            </div>
+
+            <div class="end-capsule rv d7" style="margin-top:clamp(.5rem,1vh,1rem);">
+                © 2026 孙琦 · Designed with 💗
+            </div>
+        </div>
+        <span class="sn">06</span>
+    </section>
+
+    <!-- ========================================
+         视频弹层（全局）
+         ======================================== -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-inner">
+            <button class="video-modal-close" id="videoClose" aria-label="关闭视频">✕</button>
+            <iframe id="videoFrame" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/scroll-effects.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

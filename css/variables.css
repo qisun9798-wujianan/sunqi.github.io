@@ -1,0 +1,70 @@
+/* ===========================================
+   孙琦个人网站 — CSS 变量系统
+   修改配色/字体/字号，只需改这里
+   =========================================== */
+
+:root {
+    /* --- 调色板（温暖奶油风）--- */
+    --cream: #FDF6F0;
+    --cream-deep: #F7EDE4;
+    --blush: #E8788A;
+    --blush-mid: #F2A0AE;
+    --blush-soft: #FACDD5;
+    --blush-pale: #FDE8EC;
+    --blush-wash: #FFF6F7;
+    --wisteria: #8E7CB8;
+    --wisteria-mid: #B5AAD6;
+    --wisteria-soft: #D4CEE8;
+    --wisteria-pale: #EBE7F5;
+    --pistachio: #6AB893;
+    --pistachio-mid: #A0D9BE;
+    --pistachio-soft: #C5E9D5;
+    --pistachio-pale: #E4F5EC;
+    --honey: #D4A24C;
+    --honey-soft: #F2D68A;
+    --sky: #7BA8D4;
+
+    /* --- 文字色阶 --- */
+    --ink: #2A1F32;
+    --ink-mid: #564560;
+    --ink-light: #857590;
+    --ink-faint: #B3A5BE;
+    --ink-ghost: #D4C9DC;
+    --ink-whisper: #EAE3EF;
+
+    /* --- 玻璃态 --- */
+    --glass: rgba(253, 246, 240, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.65);
+
+    /* --- 字体 --- */
+    --ff-display: 'Playfair Display', 'Noto Sans SC', serif;
+    --ff-body: 'DM Sans', 'Noto Sans SC', sans-serif;
+    --ff-mono: 'JetBrains Mono', monospace;
+
+    /* --- 字号（响应式 clamp）--- */
+    --fs-hero: clamp(2.6rem, 7vw, 5.5rem);
+    --fs-h2: clamp(1.4rem, 3.8vw, 2.6rem);
+    --fs-h3: clamp(1rem, 2.2vw, 1.5rem);
+    --fs-sub: clamp(0.8rem, 1.4vw, 1.05rem);
+    --fs-body: clamp(0.72rem, 1.12vw, 0.92rem);
+    --fs-sm: clamp(0.62rem, 0.88vw, 0.78rem);
+    --fs-xs: clamp(0.52rem, 0.72vw, 0.65rem);
+
+    /* --- 间距 --- */
+    --pad: clamp(1.8rem, 5vw, 5rem);
+    --gap: clamp(0.6rem, 1.6vw, 1.6rem);
+
+    /* --- 缓动曲线 --- */
+    --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* === 深色模式预留（后期可扩展）=== */
+@media (prefers-color-scheme: dark) {
+    /* :root {
+        --cream: #1a1520;
+        --ink: #FDF6F0;
+        ...
+    } */
+}
