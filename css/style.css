@@ -253,7 +253,7 @@ img { max-width: 100%; object-fit: contain; }
 }
 
 .about-desc {
-    font-size: var(--fs-sub);
+    font-size: clamp(0.95rem, 1.8vw, 1.25rem);
     color: var(--ink-mid);
     line-height: 1.9;
 }
