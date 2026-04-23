@@ -107,7 +107,7 @@
     /* ========================================
        4. GitHub 数据获取（公开 API）
        ======================================== */
-    const GITHUB_USERNAME = 'sunqi'; // GitHub 用户名
+    const GITHUB_USERNAME = 'qisun9798-wujianan'; // GitHub 用户名
 
     async function fetchGitHubStats() {
         if (GITHUB_USERNAME === 'YOUR_GITHUB_USERNAME') return;
