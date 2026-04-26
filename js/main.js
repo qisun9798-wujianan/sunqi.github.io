@@ -141,7 +141,7 @@
     });
 
     /* ========================================
-       6. 技能标签点击展开图片画廊
+       6. 技能标签点击展开图片画廊（两阶段扇形动画）
        ======================================== */
     document.querySelectorAll('.tree-tag').forEach(tag => {
         tag.addEventListener('click', (e) => {
@@ -153,15 +153,25 @@
             const isSameActive = targetSet.classList.contains('active');
 
             // 先收起当前节点内所有图片组
-            gallery.querySelectorAll('.gallery-set').forEach(set => set.classList.remove('active'));
+            gallery.querySelectorAll('.gallery-set').forEach(set => {
+                set.classList.remove('active');
+                set.classList.remove('spread');
+            });
 
             if (isSameActive) {
                 // 再次点击同一标签 → 收起整个画廊
                 item.classList.remove('expanded');
             } else {
-                // 展开对应图片组
+                // 展开对应图片组（第一阶段：扇形堆叠）
                 item.classList.add('expanded');
                 targetSet.classList.add('active');
+
+                // 第二阶段：0.4秒后自动展开成一排
+                setTimeout(() => {
+                    if (targetSet.classList.contains('active')) {
+                        targetSet.classList.add('spread');
+                    }
+                }, 400);
             }
         });
     });
@@ -170,7 +180,10 @@
     document.querySelectorAll('.timeline-item').forEach(item => {
         item.addEventListener('mouseleave', () => {
             item.classList.remove('expanded');
-            item.querySelectorAll('.gallery-set').forEach(set => set.classList.remove('active'));
+            item.querySelectorAll('.gallery-set').forEach(set => {
+                set.classList.remove('active');
+                set.classList.remove('spread');
+            });
         });
     });
 

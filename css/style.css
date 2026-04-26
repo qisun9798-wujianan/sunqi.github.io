@@ -501,24 +501,23 @@ img { max-width: 100%; object-fit: contain; }
 
 .gallery-set.active {
     display: flex;
-    gap: 8px;
     height: auto;
 }
 
 .gallery-set img {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     object-fit: cover;
     border-radius: 10px;
     border: 1.5px solid var(--glass-border);
     box-shadow: 0 3px 12px rgba(80, 50, 110, .08);
     opacity: 0;
     position: relative;
-    margin-left: -52px;
+    margin-left: -48px;
     z-index: var(--z, 1);
-    transform: rotate(var(--fan-angle, 0deg)) scale(0.5) translateY(12px);
+    transform: rotate(var(--fan-angle, 0deg)) scale(0.5) translateY(15px);
     transform-origin: bottom center;
-    transition: all .55s var(--ease-spring);
+    transition: all .5s var(--ease-spring);
     cursor: pointer;
 }
 
@@ -527,20 +526,29 @@ img { max-width: 100%; object-fit: contain; }
 }
 
 /* 扇形初始角度 */
-.gallery-set img:nth-child(1) { --fan-angle: -22deg; --z: 3; }
-.gallery-set img:nth-child(2) { --fan-angle: 0deg; --z: 2; }
-.gallery-set img:nth-child(3) { --fan-angle: 22deg; --z: 1; }
+.gallery-set img:nth-child(1) { --fan-angle: -28deg; --z: 3; }
+.gallery-set img:nth-child(2) { --fan-angle: -8deg; --z: 2; }
+.gallery-set img:nth-child(3) { --fan-angle: 16deg; --z: 1; }
 
-/* 展开成一排 */
+/* 第一阶段：扇形堆叠出现 */
 .gallery-set.active img {
     margin-left: 0;
     opacity: 1;
+    transform: rotate(var(--fan-angle)) scale(0.88) translateY(0);
+}
+
+.gallery-set.active img:nth-child(1) { transition-delay: .06s; }
+.gallery-set.active img:nth-child(2) { transition-delay: .14s; }
+.gallery-set.active img:nth-child(3) { transition-delay: .22s; }
+
+/* 第二阶段：展开成一排 */
+.gallery-set.active.spread img {
     transform: rotate(0deg) scale(1) translateY(0);
 }
 
-.gallery-set.active img:nth-child(1) { transition-delay: .08s; }
-.gallery-set.active img:nth-child(2) { transition-delay: .18s; }
-.gallery-set.active img:nth-child(3) { transition-delay: .28s; }
+.gallery-set.active.spread img:nth-child(1) { transition-delay: .1s; }
+.gallery-set.active.spread img:nth-child(2) { transition-delay: .2s; }
+.gallery-set.active.spread img:nth-child(3) { transition-delay: .3s; }
 
 .gallery-set img:hover {
     transform: rotate(0deg) scale(1.12) translateY(-4px);
