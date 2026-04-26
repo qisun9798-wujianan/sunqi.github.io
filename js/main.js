@@ -166,13 +166,17 @@
                 item.classList.add('expanded');
                 targetSet.classList.add('active');
 
-                // 第二阶段：0.4秒后自动展开成一排
-                setTimeout(() => {
-                    if (targetSet.classList.contains('active')) {
-                        targetSet.classList.add('spread');
-                    }
-                }, 400);
+                // 点击图片后手动展开成一排（见下方事件监听）
             }
+        });
+    });
+
+    // 点击图片组 → 展开/收起成一排
+    document.querySelectorAll('.gallery-set').forEach(set => {
+        set.addEventListener('click', (e) => {
+            if (!set.classList.contains('active')) return;
+            e.stopPropagation();
+            set.classList.toggle('spread');
         });
     });
 
