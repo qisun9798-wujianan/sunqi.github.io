@@ -166,4 +166,12 @@
         });
     });
 
+    // 鼠标离开节点时，自动收起图片画廊
+    document.querySelectorAll('.timeline-item').forEach(item => {
+        item.addEventListener('mouseleave', () => {
+            item.classList.remove('expanded');
+            item.querySelectorAll('.gallery-set').forEach(set => set.classList.remove('active'));
+        });
+    });
+
 })();
