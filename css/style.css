@@ -564,6 +564,7 @@ img { max-width: 100%; object-fit: contain; }
 .gallery-set.active.spread img {
     margin-left: 8px;
     transform: rotate(0deg) scale(1) translateY(0);
+    will-change: transform;
 }
 
 .gallery-set.active.spread img:first-child {
@@ -575,9 +576,10 @@ img { max-width: 100%; object-fit: contain; }
 .gallery-set.active.spread img:nth-child(3) { transition-delay: .3s; }
 
 .gallery-set.active.spread img:hover {
-    transform: rotate(0deg) scale(1.12) translateY(-4px);
-    box-shadow: 0 8px 22px rgba(80, 50, 110, .14);
-    z-index: 10;
+    transform: rotate(0deg) scale(1.06) translateY(-2px);
+    box-shadow: 0 6px 16px rgba(80, 50, 110, .1);
+    transition: all .25s var(--ease-spring);
+    transition-delay: 0s !important;
 }
 
 /* ===========================================
