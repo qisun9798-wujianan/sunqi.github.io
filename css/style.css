@@ -513,7 +513,7 @@ img { max-width: 100%; object-fit: contain; }
     box-shadow: 0 3px 12px rgba(80, 50, 110, .08);
     opacity: 0;
     position: relative;
-    margin-left: -48px;
+    margin-left: -51px;
     z-index: var(--z, 1);
     transform: rotate(var(--fan-angle, 0deg)) scale(0.5) translateY(15px);
     transform-origin: bottom center;
@@ -525,16 +525,20 @@ img { max-width: 100%; object-fit: contain; }
     margin-left: 0;
 }
 
-/* 扇形初始角度 */
-.gallery-set img:nth-child(1) { --fan-angle: -28deg; --z: 3; }
-.gallery-set img:nth-child(2) { --fan-angle: -8deg; --z: 2; }
-.gallery-set img:nth-child(3) { --fan-angle: 16deg; --z: 1; }
+/* 折叠角度（收起来叠在一起） */
+.gallery-set img:nth-child(1) { --fan-angle: -18deg; --z: 3; }
+.gallery-set img:nth-child(2) { --fan-angle: -6deg; --z: 2; }
+.gallery-set img:nth-child(3) { --fan-angle: 10deg; --z: 1; }
 
-/* 第一阶段：扇形堆叠出现 */
+/* 第一阶段：折叠出现（几乎完全重叠，只露出 4px 边缘） */
 .gallery-set.active img {
-    margin-left: 0;
+    margin-left: -51px;
     opacity: 1;
-    transform: rotate(var(--fan-angle)) scale(0.88) translateY(0);
+    transform: rotate(var(--fan-angle)) scale(0.95) translateY(0);
+}
+
+.gallery-set.active img:first-child {
+    margin-left: 0;
 }
 
 .gallery-set.active img:nth-child(1) { transition-delay: .06s; }
@@ -543,14 +547,19 @@ img { max-width: 100%; object-fit: contain; }
 
 /* 第二阶段：展开成一排 */
 .gallery-set.active.spread img {
+    margin-left: 8px;
     transform: rotate(0deg) scale(1) translateY(0);
+}
+
+.gallery-set.active.spread img:first-child {
+    margin-left: 0;
 }
 
 .gallery-set.active.spread img:nth-child(1) { transition-delay: .1s; }
 .gallery-set.active.spread img:nth-child(2) { transition-delay: .2s; }
 .gallery-set.active.spread img:nth-child(3) { transition-delay: .3s; }
 
-.gallery-set img:hover {
+.gallery-set.active.spread img:hover {
     transform: rotate(0deg) scale(1.12) translateY(-4px);
     box-shadow: 0 8px 22px rgba(80, 50, 110, .14);
     z-index: 10;
