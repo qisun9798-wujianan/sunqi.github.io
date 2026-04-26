@@ -396,13 +396,9 @@ img { max-width: 100%; object-fit: contain; }
     pointer-events: none;
 }
 
-/* 树干：从节点向下延伸的细线 */
+/* 树干：从节点向下延伸的细线（已隐藏） */
 .tree-line {
-    width: 2px;
-    height: 0;
-    background: linear-gradient(180deg, var(--blush-soft) 0%, var(--wisteria-soft) 50%, var(--pistachio-soft) 100%);
-    border-radius: 1px;
-    transition: height .35s var(--ease-expo);
+    display: none;
 }
 
 /* 分支标签容器 */
