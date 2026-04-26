@@ -415,36 +415,42 @@ img { max-width: 100%; object-fit: contain; }
     position: relative;
 }
 
-/* 分支标签（叶子） */
+/* 分支标签（玻璃胶囊） */
 .tree-tag {
-    font-family: var(--ff-mono);
+    font-family: var(--ff-body);
     font-size: var(--fs-xs);
-    padding: clamp(2px, .3vw, 4px) clamp(8px, 1vw, 14px);
+    font-weight: 500;
+    padding: clamp(4px, .4vw, 6px) clamp(12px, 1.2vw, 18px);
     border-radius: 100px;
-    background: var(--cream-deep);
-    border: 1.5px solid var(--tag-color, var(--ink-whisper));
+    background: rgba(255, 255, 255, .55);
+    border: 1px solid var(--tag-color, var(--ink-whisper));
     color: var(--ink-mid);
     opacity: 0;
     transform: translateY(8px) scale(.9);
     transition: all .3s var(--ease-spring);
     white-space: nowrap;
-    letter-spacing: .04em;
+    letter-spacing: .01em;
     position: relative;
     cursor: pointer;
     user-select: none;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 1px 3px rgba(80, 50, 110, .05), inset 0 1px 0 rgba(255, 255, 255, .4);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
 }
 
-/* 小圆点装饰 */
+/* 文字前小色点 */
 .tree-tag::before {
     content: '';
-    position: absolute;
-    top: -3px;
-    left: 50%;
-    transform: translateX(-50%) scale(0);
+    display: inline-block;
     width: 5px;
     height: 5px;
     border-radius: 50%;
     background: var(--tag-color, var(--blush));
+    flex-shrink: 0;
+    transform: scale(0);
     transition: transform .3s var(--ease-spring);
 }
 
@@ -465,7 +471,7 @@ img { max-width: 100%; object-fit: contain; }
 }
 
 .timeline-item:hover .tree-tag::before {
-    transform: translateX(-50%) scale(1);
+    transform: scale(1);
 }
 
 /* 依次延迟弹出 */
@@ -473,6 +479,13 @@ img { max-width: 100%; object-fit: contain; }
 .timeline-item:hover .tree-tag:nth-child(2) { transition-delay: .16s; }
 .timeline-item:hover .tree-tag:nth-child(3) { transition-delay: .24s; }
 .timeline-item:hover .tree-tag:nth-child(4) { transition-delay: .32s; }
+
+/* 标签 hover 微交互 */
+.tree-tag:hover {
+    background: rgba(255, 255, 255, .85);
+    box-shadow: 0 3px 10px rgba(80, 50, 110, .08), inset 0 1px 0 rgba(255, 255, 255, .6);
+    transform: translateY(-1px) scale(1.02);
+}
 
 /* --- 图片画廊（点击标签展开） --- */
 .tree-gallery {
