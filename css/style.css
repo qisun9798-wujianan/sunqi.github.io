@@ -479,16 +479,18 @@ img { max-width: 100%; object-fit: contain; }
     visibility: hidden;
     opacity: 0;
     max-height: 0;
-    overflow: hidden;
+    overflow: visible;
     transition: visibility .4s, opacity .4s var(--ease-expo), max-height .5s var(--ease-expo);
     margin-top: 0;
+    position: relative;
+    z-index: 5;
 }
 
 .timeline-item.expanded .tree-gallery {
     visibility: visible;
     opacity: 1;
     max-height: 130px;
-    margin-top: clamp(4px, .6vh, 8px);
+    margin-top: clamp(10px, 1.2vh, 14px);
 }
 
 .gallery-set {
