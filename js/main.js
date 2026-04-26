@@ -140,4 +140,30 @@
         });
     });
 
+    /* ========================================
+       6. 技能标签点击展开图片画廊
+       ======================================== */
+    document.querySelectorAll('.tree-tag').forEach(tag => {
+        tag.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const item = tag.closest('.timeline-item');
+            const gallery = item.querySelector('.tree-gallery');
+            const setId = tag.dataset.gallery;
+            const targetSet = gallery.querySelector(`[data-set="${setId}"]`);
+            const isSameActive = targetSet.classList.contains('active');
+
+            // 先收起当前节点内所有图片组
+            gallery.querySelectorAll('.gallery-set').forEach(set => set.classList.remove('active'));
+
+            if (isSameActive) {
+                // 再次点击同一标签 → 收起整个画廊
+                item.classList.remove('expanded');
+            } else {
+                // 展开对应图片组
+                item.classList.add('expanded');
+                targetSet.classList.add('active');
+            }
+        });
+    });
+
 })();
