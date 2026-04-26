@@ -821,6 +821,105 @@ img { max-width: 100%; object-fit: contain; }
 }
 
 /* ===========================================
+   图片大图预览 Lightbox
+   =========================================== */
+.img-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+    background: rgba(42, 31, 50, .88);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .35s var(--ease-expo);
+}
+
+.img-lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.img-lightbox img {
+    max-width: min(85vw, 900px);
+    max-height: min(80vh, 700px);
+    border-radius: 14px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, .35);
+    transform: scale(.92);
+    transition: transform .4s var(--ease-spring);
+    object-fit: contain;
+}
+
+.img-lightbox.active img {
+    transform: scale(1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .12);
+    border: 1px solid rgba(255, 255, 255, .2);
+    color: white;
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .3s var(--ease-spring);
+    z-index: 2;
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, .25);
+    transform: scale(1.08);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255, 255, 255, .2);
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .3s var(--ease-spring);
+    z-index: 2;
+    padding-bottom: 4px;
+}
+
+.lightbox-nav:hover {
+    background: rgba(255, 255, 255, .25);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+
+.lightbox-counter {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, .65);
+    font-size: var(--fs-sm);
+    font-family: var(--ff-mono);
+    letter-spacing: .1em;
+}
+
+/* ===========================================
    P6 — CONTACT 联系方式
    =========================================== */
 .slide-contact {

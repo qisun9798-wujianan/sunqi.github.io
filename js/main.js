@@ -171,13 +171,73 @@
         });
     });
 
-    // 点击图片组 → 展开/收起成一排
+    // 点击图片组 → 折叠状态展开成一排 / 展开状态打开大图预览
+    const lightbox = document.getElementById('imgLightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+    let currentSetImages = [];
+    let currentIndex = 0;
+
+    function openLightbox(set, clickedImg) {
+        currentSetImages = Array.from(set.querySelectorAll('img'));
+        currentIndex = currentSetImages.indexOf(clickedImg);
+        updateLightbox();
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightbox() {
+        if (currentSetImages.length === 0) return;
+        lightboxImg.src = currentSetImages[currentIndex].src;
+        lightboxImg.alt = currentSetImages[currentIndex].alt;
+        lightboxCounter.textContent = `${currentIndex + 1} / ${currentSetImages.length}`;
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+        lightboxImg.src = '';
+    }
+
+    function nextImage() {
+        if (currentSetImages.length === 0) return;
+        currentIndex = (currentIndex + 1) % currentSetImages.length;
+        updateLightbox();
+    }
+
+    function prevImage() {
+        if (currentSetImages.length === 0) return;
+        currentIndex = (currentIndex - 1 + currentSetImages.length) % currentSetImages.length;
+        updateLightbox();
+    }
+
     document.querySelectorAll('.gallery-set').forEach(set => {
         set.addEventListener('click', (e) => {
             if (!set.classList.contains('active')) return;
             e.stopPropagation();
-            set.classList.toggle('spread');
+
+            const clickedImg = e.target.closest('img');
+
+            if (!set.classList.contains('spread')) {
+                // 折叠状态 → 展开成一排
+                set.classList.add('spread');
+            } else if (clickedImg) {
+                // 展开状态且点击了具体图片 → 打开大图预览
+                openLightbox(set, clickedImg);
+            }
         });
+    });
+
+    // Lightbox 控制
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    document.getElementById('lightboxPrev').addEventListener('click', (e) => { e.stopPropagation(); prevImage(); });
+    document.getElementById('lightboxNext').addEventListener('click', (e) => { e.stopPropagation(); nextImage(); });
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') nextImage();
+        if (e.key === 'ArrowLeft') prevImage();
     });
 
     // 鼠标离开节点时，自动收起图片画廊
