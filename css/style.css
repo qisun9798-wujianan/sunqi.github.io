@@ -383,6 +383,99 @@ img { max-width: 100%; object-fit: contain; }
     line-height: 1.6;
 }
 
+/* --- 技能树分支 --- */
+.skill-tree {
+    margin-top: clamp(8px, 1.2vh, 14px);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .7s var(--ease-expo), transform .7s var(--ease-expo);
+}
+
+/* 树干：从节点向下延伸的细线 */
+.tree-line {
+    width: 1.5px;
+    height: 0;
+    background: linear-gradient(180deg, var(--blush-soft) 0%, var(--wisteria-soft) 50%, var(--pistachio-soft) 100%);
+    border-radius: 1px;
+    transition: height .6s var(--ease-expo);
+}
+
+/* 分支标签容器 */
+.tree-branches {
+    display: flex;
+    gap: clamp(4px, .6vw, 8px);
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 6px;
+    position: relative;
+}
+
+/* 分支标签（叶子） */
+.tree-tag {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-xs);
+    padding: clamp(2px, .3vw, 4px) clamp(8px, 1vw, 14px);
+    border-radius: 100px;
+    background: var(--cream-deep);
+    border: 1.5px solid var(--tag-color, var(--ink-whisper));
+    color: var(--ink-mid);
+    opacity: 0;
+    transform: translateY(10px) scale(.85);
+    transition: all .5s var(--ease-spring);
+    white-space: nowrap;
+    letter-spacing: .04em;
+    position: relative;
+}
+
+/* 小圆点装饰 */
+.tree-tag::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--tag-color, var(--blush));
+    opacity: 0;
+    transition: opacity .4s var(--ease-expo);
+}
+
+/* 触发入场动画 */
+.slide.visible .skill-tree {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide.visible .tree-line {
+    height: 24px;
+}
+
+.slide.visible .tree-tag {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.slide.visible .tree-tag::before {
+    opacity: 1;
+}
+
+/* 依次延迟弹出 */
+.slide.visible .tree-tag:nth-child(1) { transition-delay: .15s; }
+.slide.visible .tree-tag:nth-child(2) { transition-delay: .3s; }
+.slide.visible .tree-tag:nth-child(3) { transition-delay: .45s; }
+.slide.visible .tree-tag:nth-child(4) { transition-delay: .6s; }
+
+/* 时间轴节点依次延迟展开 */
+.timeline-item:nth-child(1) .skill-tree { transition-delay: .3s; }
+.timeline-item:nth-child(2) .skill-tree { transition-delay: .6s; }
+.timeline-item:nth-child(3) .skill-tree { transition-delay: .9s; }
+
 /* ===========================================
    P4 — WORKS 视频作品集
    =========================================== */
