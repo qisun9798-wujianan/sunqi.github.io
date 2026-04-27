@@ -35,8 +35,9 @@ def get_title(props):
     return t[0].get("text", {}).get("content", "") if t else ""
 
 def get_rt(props, key):
-    return "".join(t.get("text", {}).get("content", "")
+    text = "".join(t.get("text", {}).get("content", "")
                    for t in props.get(key, {}).get("rich_text", []))
+    return text.replace("\n", " ").replace("\r", " ").strip()
 
 def clean_tags(tags):
     out = []
@@ -83,7 +84,7 @@ for p in blog:
         "title": get_title(props),
         "date": props.get("date", {}).get("date", {}).get("start", ""),
         "category": props.get("Category", {}).get("select", {}).get("name", ""),
-        "excerpt": get_rt(props, "Excerpt"),
+        "excerpt": get_rt(props, "Excerpt").replace("\u2022", "").strip()
         "url": p.get("url", "")
     })
 with open("data/blog.json", "w", encoding="utf-8") as f:
