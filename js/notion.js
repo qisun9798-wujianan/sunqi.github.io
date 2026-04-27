@@ -6,14 +6,11 @@
 (function () {
     'use strict';
 
-    // 获取当前目录前缀（兼容 GitHub Pages 子路径）
-    const BASE = document.querySelector('script[src*="notion.js"]')?.src.replace(/js\/notion\.js$/, '') || '';
-
     /* ===== 工具函数 ===== */
     async function loadJson(path) {
         try {
-            const res = await fetch(BASE + path, { cache: 'no-cache' });
-            if (!res.ok) return null;
+            const res = await fetch(path, { cache: 'no-cache' });
+            if (!res.ok) { console.error('HTTP', res.status, path); return null; }
             return res.json();
         } catch (err) {
             console.error('加载 JSON 失败:', path, err);
