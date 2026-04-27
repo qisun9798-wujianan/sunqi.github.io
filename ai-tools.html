@@ -172,18 +172,27 @@
             box-shadow: 0 4px 14px rgba(0,0,0,.12);
             text-shadow: 0 1px 3px rgba(0,0,0,.2);
             position: relative; overflow: hidden;
+            background: white;
         }
         .nav-card-logo::after {
             content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%;
             background: linear-gradient(180deg, rgba(255,255,255,.25), transparent);
             border-radius: 14px 14px 0 0;
+            pointer-events: none;
         }
-        .nav-card-logo.cat-img  { background: linear-gradient(135deg, #FF6B9D, #C44569); }
-        .nav-card-logo.cat-vid  { background: linear-gradient(135deg, #A29BFE, #6C5CE7); }
-        .nav-card-logo.cat-wri  { background: linear-gradient(135deg, #74B9FF, #0984E3); }
-        .nav-card-logo.cat-cod  { background: linear-gradient(135deg, #00B894, #00CEC9); }
-        .nav-card-logo.cat-mus  { background: linear-gradient(135deg, #FDCB6E, #E17055); }
-        .nav-card-logo.cat-def  { background: linear-gradient(135deg, var(--blush), var(--wisteria-mid)); }
+        .nav-card-logo img {
+            width: 100%; height: 100%;
+            object-fit: contain;
+            padding: 5px;
+            position: relative; z-index: 1;
+        }
+        .nav-card-logo.fallback { background: linear-gradient(135deg, var(--blush), var(--wisteria-mid)); }
+        .nav-card-logo.fallback.cat-img  { background: linear-gradient(135deg, #FF6B9D, #C44569); }
+        .nav-card-logo.fallback.cat-vid  { background: linear-gradient(135deg, #A29BFE, #6C5CE7); }
+        .nav-card-logo.fallback.cat-wri  { background: linear-gradient(135deg, #74B9FF, #0984E3); }
+        .nav-card-logo.fallback.cat-cod  { background: linear-gradient(135deg, #00B894, #00CEC9); }
+        .nav-card-logo.fallback.cat-mus  { background: linear-gradient(135deg, #FDCB6E, #E17055); }
+        .nav-card-logo.fallback.cat-def  { background: linear-gradient(135deg, var(--blush), var(--wisteria-mid)); }
 
         .nav-card-meta {
             flex: 1; min-width: 0;
@@ -293,8 +302,8 @@
 
     <script>
         const AI_TOOLS = [
-            {"name":"即梦 AI","url":"https://jimeng.jianying.com","category":"图像","description":"字节跳动旗下 AI 绘画工具，中文友好，支持文生图、图生图","tags":["付费","中文"],"rating":"⭐⭐⭐"},
-            {"name":"Midjourney","url":"https://www.midjourney.com","category":"图像","description":"AI 图像生成标杆，文字描述生成高质量艺术图片","tags":["付费","英文"],"rating":"⭐⭐⭐"}
+            {"name":"即梦 AI","url":"https://jimeng.jianying.com","category":"图像","description":"字节跳动旗下 AI 绘画工具，中文友好，支持文生图、图生图","tags":["付费","中文"],"rating":"⭐⭐⭐","logo":"https://www.google.com/s2/favicons?domain=jimeng.jianying.com&sz=128"},
+            {"name":"Midjourney","url":"https://www.midjourney.com","category":"图像","description":"AI 图像生成标杆，文字描述生成高质量艺术图片","tags":["付费","英文"],"rating":"⭐⭐⭐","logo":"https://www.google.com/s2/favicons?domain=midjourney.com&sz=128"}
         ];
 
         function escapeHtml(str) {
@@ -313,9 +322,13 @@
             grid.innerHTML = tools.map(tool => {
                 const logoClass = 'cat-' + (CAT_LOGO_CLASS[tool.category] || 'def');
                 const logoChar = escapeHtml(tool.name).charAt(0);
+                const logoHtml = tool.logo
+                    ? `<img src="${tool.logo}" alt="${escapeHtml(tool.name)}" loading="lazy" onerror="this.parentElement.classList.add('fallback','${logoClass}');this.parentElement.textContent='${logoChar}';this.remove()">`
+                    : logoChar;
+                const fallbackClass = tool.logo ? '' : `fallback ${logoClass}`;
                 return `<a class="nav-card" href="${tool.url}" target="_blank" rel="noopener">
                     <div class="nav-card-head">
-                        <div class="nav-card-logo ${logoClass}">${logoChar}</div>
+                        <div class="nav-card-logo ${fallbackClass}">${logoHtml}</div>
                         <div class="nav-card-meta">
                             <span class="nav-card-name">${escapeHtml(tool.name)}</span>
                             <span class="nav-card-rating">${tool.rating}</span>
