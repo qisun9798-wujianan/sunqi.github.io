@@ -403,12 +403,13 @@ img { max-width: 100%; object-fit: contain; }
 
 /* 分支标签容器 */
 .tree-branches {
-    display: flex;
-    gap: clamp(4px, .6vw, 8px);
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(6px, .8vw, 10px);
+    justify-items: center;
     margin-top: 4px;
     position: relative;
+    max-width: min(80vw, 320px);
 }
 
 /* 分支标签（玻璃胶囊） */
