@@ -10,124 +10,253 @@
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .ai-page { min-height: 100vh; padding: var(--pad); }
-        .ai-header {
-            text-align: center;
-            padding: clamp(2rem, 5vh, 4rem) 0;
+        :root { --nav-pad: clamp(1.2rem, 3vw, 2.5rem); }
+
+        .nav-page { min-height: 100vh; background: var(--cream); }
+
+        /* Header */
+        .nav-header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(255,250,245,.85);
+            backdrop-filter: blur(16px) saturate(1.2);
+            -webkit-backdrop-filter: blur(16px) saturate(1.2);
+            border-bottom: 1px solid var(--glass-border);
         }
-        .ai-header h1 {
-            font-family: var(--ff-display);
-            font-size: var(--fs-h2);
-            color: var(--ink);
+        .nav-header-inner {
+            max-width: 1200px; margin: 0 auto;
+            padding: var(--nav-pad);
+            display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+            flex-wrap: wrap;
         }
-        .ai-header h1 em { color: var(--blush); font-style: italic; }
-        .ai-header p {
-            color: var(--ink-light);
-            font-size: var(--fs-sm);
-            margin-top: .5rem;
+        .nav-brand {
+            display: flex; align-items: center; gap: 10px;
+            text-decoration: none; color: var(--ink);
         }
-        .ai-back {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--ink-mid);
-            text-decoration: none;
-            font-size: var(--fs-sm);
-            margin-bottom: 1rem;
-            transition: color .3s;
+        .nav-brand-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            background: linear-gradient(135deg, var(--blush), var(--wisteria));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px;
         }
-        .ai-back:hover { color: var(--blush); }
-        .ai-tools-grid {
+        .nav-brand-text {
+            font-family: var(--ff-display); font-size: var(--fs-body); font-weight: 700;
+        }
+        .nav-brand-text span { color: var(--blush); font-style: italic; font-weight: 400; }
+
+        /* Search */
+        .nav-search-wrap {
+            position: relative; flex: 1; max-width: 420px;
+        }
+        .nav-search {
+            width: 100%; padding: 10px 16px 10px 40px;
+            border-radius: 100px; border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,.6);
+            font-family: var(--ff-body); font-size: var(--fs-sm);
+            color: var(--ink); outline: none;
+            transition: all .3s var(--ease-spring);
+        }
+        .nav-search:focus {
+            background: white; border-color: var(--blush-soft);
+            box-shadow: 0 4px 14px rgba(232,120,138,.1);
+        }
+        .nav-search-wrap::before {
+            content: '🔍'; position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+            font-size: 14px; opacity: .5; pointer-events: none;
+        }
+
+        /* Hero */
+        .nav-hero {
+            text-align: center; padding: clamp(2.5rem, 6vh, 4rem) var(--nav-pad);
+        }
+        .nav-hero h1 {
+            font-family: var(--ff-display); font-size: clamp(2rem, 5vw, 3.2rem);
+            color: var(--ink); line-height: 1.1;
+        }
+        .nav-hero h1 em { color: var(--blush); font-style: italic; }
+        .nav-hero p {
+            color: var(--ink-light); font-size: var(--fs-sub);
+            margin-top: .6rem; max-width: 480px; margin-inline: auto;
+        }
+        .nav-hero-stats {
+            display: flex; gap: 1.5rem; justify-content: center;
+            margin-top: 1.2rem;
+        }
+        .nav-stat {
+            display: flex; flex-direction: column; align-items: center; gap: 2px;
+        }
+        .nav-stat-num {
+            font-family: var(--ff-display); font-size: var(--fs-h3);
+            font-weight: 700; color: var(--blush); line-height: 1;
+        }
+        .nav-stat-label {
+            font-size: var(--fs-xs); color: var(--ink-faint); letter-spacing: .08em;
+        }
+
+        /* Category Filter */
+        .nav-filter {
+            display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+            padding: 0 var(--nav-pad) 1.5rem;
+            max-width: 800px; margin: 0 auto;
+        }
+        .nav-filter-btn {
+            padding: 6px 16px; border-radius: 100px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,.5);
+            font-family: var(--ff-body); font-size: var(--fs-sm);
+            color: var(--ink-mid); cursor: pointer;
+            transition: all .25s var(--ease-spring);
+            backdrop-filter: blur(4px);
+        }
+        .nav-filter-btn:hover {
+            background: white; border-color: var(--blush-soft);
+            transform: translateY(-1px);
+        }
+        .nav-filter-btn.active {
+            background: var(--blush); border-color: var(--blush);
+            color: white; box-shadow: 0 4px 14px rgba(232,120,138,.25);
+        }
+
+        /* Grid */
+        .nav-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: clamp(.8rem, 1.5vw, 1.2rem);
-            max-width: min(92vw, 1100px);
-            margin: 0 auto;
-            padding-bottom: 3rem;
+            max-width: 1200px; margin: 0 auto;
+            padding: 0 var(--nav-pad) clamp(3rem, 6vh, 5rem);
         }
-        .ai-tool-card {
+
+        /* Card */
+        .nav-card {
             background: var(--glass);
             border: 1px solid var(--glass-border);
-            border-radius: 14px;
-            padding: clamp(1rem, 1.8vw, 1.4rem);
-            text-decoration: none;
-            color: inherit;
+            border-radius: 18px;
+            padding: clamp(1.1rem, 2vw, 1.5rem);
+            text-decoration: none; color: inherit;
             transition: all .35s var(--ease-spring);
             backdrop-filter: blur(8px);
+            display: flex; flex-direction: column;
+            position: relative; overflow: hidden;
         }
-        .ai-tool-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(80, 50, 110, .08);
+        .nav-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--blush-mid), var(--wisteria-mid));
+            opacity: 0; transition: opacity .3s;
+        }
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 40px rgba(80,50,110,.1);
             border-color: var(--blush-soft);
         }
-        .ai-tool-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: .5rem;
+        .nav-card:hover::before { opacity: 1; }
+
+        .nav-card-head {
+            display: flex; align-items: flex-start; justify-content: space-between; gap: 10px;
+            margin-bottom: .6rem;
         }
-        .ai-tool-name {
-            font-family: var(--ff-display);
-            font-size: var(--fs-body);
-            font-weight: 700;
-            color: var(--ink);
+        .nav-card-name {
+            font-family: var(--ff-display); font-size: var(--fs-body);
+            font-weight: 700; color: var(--ink); line-height: 1.3;
         }
-        .ai-tool-rating {
-            font-size: var(--fs-sm);
-            color: var(--honey);
+        .nav-card-rating {
+            font-size: var(--fs-sm); color: var(--honey); flex-shrink: 0; letter-spacing: 1px;
         }
-        .ai-tool-desc {
-            font-size: var(--fs-sm);
-            color: var(--ink-mid);
-            line-height: 1.6;
-            margin-bottom: .8rem;
+        .nav-card-desc {
+            font-size: var(--fs-sm); color: var(--ink-mid); line-height: 1.6;
+            margin-bottom: .9rem; flex: 1;
         }
-        .ai-tool-meta {
-            display: flex;
+        .nav-card-footer {
+            display: flex; align-items: center; justify-content: space-between; gap: 8px;
             flex-wrap: wrap;
-            gap: 5px;
-            align-items: center;
         }
-        .ai-tool-cat {
-            font-size: var(--fs-xs);
-            padding: 2px 8px;
-            border-radius: 6px;
-            background: var(--blush-wash);
-            color: var(--blush);
+        .nav-card-tags {
+            display: flex; gap: 5px; flex-wrap: wrap;
+        }
+        .nav-card-tag {
+            font-size: var(--fs-xs); padding: 3px 10px; border-radius: 6px;
+            background: var(--cream-deep); color: var(--ink-light);
+            border: 1px solid var(--glass-border);
+        }
+        .nav-card-tag.cat {
+            background: var(--blush-wash); color: var(--blush); border-color: var(--blush-soft);
             font-weight: 500;
         }
-        .ai-tool-tag {
-            font-size: var(--fs-xs);
-            padding: 2px 8px;
-            border-radius: 6px;
-            background: var(--cream-deep);
-            color: var(--ink-light);
+        .nav-card-link {
+            font-size: var(--fs-xs); color: var(--blush); font-weight: 600;
+            display: flex; align-items: center; gap: 3px;
+            opacity: 0; transform: translateX(-6px);
+            transition: all .3s var(--ease-spring);
         }
-        .ai-loading {
-            text-align: center;
-            padding: 3rem;
-            color: var(--ink-light);
+        .nav-card:hover .nav-card-link { opacity: 1; transform: translateX(0); }
+
+        .nav-empty {
+            text-align: center; padding: 4rem; color: var(--ink-light);
+            grid-column: 1 / -1;
+        }
+
+        /* Footer */
+        .nav-footer {
+            text-align: center; padding: 2rem var(--nav-pad);
+            border-top: 1px solid var(--glass-border);
+            color: var(--ink-faint); font-size: var(--fs-xs);
+        }
+
+        @media (max-width: 600px) {
+            .nav-grid { grid-template-columns: 1fr; }
+            .nav-header-inner { flex-direction: column; align-items: stretch; }
+            .nav-search-wrap { max-width: none; }
         }
     </style>
 </head>
-<body style="background: var(--cream);">
-    <div class="ai-page">
-        <div style="max-width: min(92vw, 1100px); margin: 0 auto;">
-            <a class="ai-back" href="index.html#blog">← 返回首页</a>
-            <div class="ai-header">
-                <h1>AI <em>工具导航</em></h1>
-                <p>精选提升效率的 AI 工具，持续更新</p>
+<body>
+    <div class="nav-page">
+        <!-- Header -->
+        <header class="nav-header">
+            <div class="nav-header-inner">
+                <a class="nav-brand" href="index.html">
+                    <div class="nav-brand-icon">🤖</div>
+                    <div class="nav-brand-text">红泥小火炉 <span>AI 导航</span></div>
+                </a>
+                <div class="nav-search-wrap">
+                    <input class="nav-search" type="text" id="searchInput" placeholder="搜索 AI 工具...">
+                </div>
             </div>
-            <div class="ai-tools-grid" id="aiToolsGrid">
-                <div class="ai-loading">加载中...</div>
+        </header>
+
+        <!-- Hero -->
+        <section class="nav-hero">
+            <h1>AI <em>工具导航</em></h1>
+            <p>精选提升效率的 AI 工具，图像、视频、写作、代码，一站搞定</p>
+            <div class="nav-hero-stats">
+                <div class="nav-stat"><span class="nav-stat-num" id="statTotal">0</span><span class="nav-stat-label">工具</span></div>
+                <div class="nav-stat"><span class="nav-stat-num" id="statCat">0</span><span class="nav-stat-label">分类</span></div>
             </div>
+        </section>
+
+        <!-- Filter -->
+        <div class="nav-filter" id="categoryFilter">
+            <button class="nav-filter-btn active" data-cat="all">全部</button>
+            <button class="nav-filter-btn" data-cat="图像">🎨 图像</button>
+            <button class="nav-filter-btn" data-cat="视频">🎬 视频</button>
+            <button class="nav-filter-btn" data-cat="写作">✍️ 写作</button>
+            <button class="nav-filter-btn" data-cat="代码">💻 代码</button>
+            <button class="nav-filter-btn" data-cat="音乐">🎵 音乐</button>
         </div>
+
+        <!-- Grid -->
+        <div class="nav-grid" id="toolsGrid">
+            <div class="nav-empty">加载中...</div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="nav-footer">
+            © 红泥小火炉 · 由 Notion 驱动 · 持续更新
+        </footer>
     </div>
+
     <script>
-        // AI 工具数据（从 Notion 同步）
         const AI_TOOLS = [
-            {"name":"即梦 AI","url":"https://jimeng.jianying.com","category":"图像 视频","description":"字节跳动旗下 AI 绘画工具，中文友好","tags":["付费","中文"],"rating":"⭐⭐⭐"},
-            {"name":"Midjourney","url":"https://www.midjourney.com","category":"图像","description":"AI 图像生成，文字描述生成高质量艺术图片","tags":["付费","英文"],"rating":"⭐⭐⭐"}
+            {"name":"即梦 AI","url":"https://jimeng.jianying.com","category":"图像","description":"字节跳动旗下 AI 绘画工具，中文友好，支持文生图、图生图","tags":["付费","中文"],"rating":"⭐⭐⭐"},
+            {"name":"Midjourney","url":"https://www.midjourney.com","category":"图像","description":"AI 图像生成标杆，文字描述生成高质量艺术图片","tags":["付费","英文"],"rating":"⭐⭐⭐"}
         ];
 
         function escapeHtml(str) {
@@ -135,21 +264,61 @@
             return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]));
         }
 
-        const container = document.getElementById('aiToolsGrid');
-        if (container && AI_TOOLS.length) {
-            container.innerHTML = AI_TOOLS.map(tool => `
-                <a class="ai-tool-card" href="${tool.url}" target="_blank" rel="noopener">
-                    <div class="ai-tool-header">
-                        <span class="ai-tool-name">${escapeHtml(tool.name)}</span>
-                        <span class="ai-tool-rating">${tool.rating}</span>
+        function renderTools(tools) {
+            const grid = document.getElementById('toolsGrid');
+            if (!tools.length) {
+                grid.innerHTML = '<div class="nav-empty">没有找到匹配的工具</div>';
+                return;
+            }
+            grid.innerHTML = tools.map(tool => `
+                <a class="nav-card" href="${tool.url}" target="_blank" rel="noopener">
+                    <div class="nav-card-head">
+                        <span class="nav-card-name">${escapeHtml(tool.name)}</span>
+                        <span class="nav-card-rating">${tool.rating}</span>
                     </div>
-                    <div class="ai-tool-desc">${escapeHtml(tool.description)}</div>
-                    <div class="ai-tool-meta">
-                        <span class="ai-tool-cat">${escapeHtml(tool.category)}</span>
-                        ${tool.tags.map(t => `<span class="ai-tool-tag">${escapeHtml(t)}</span>`).join('')}
+                    <div class="nav-card-desc">${escapeHtml(tool.description)}</div>
+                    <div class="nav-card-footer">
+                        <div class="nav-card-tags">
+                            <span class="nav-card-tag cat">${escapeHtml(tool.category)}</span>
+                            ${tool.tags.map(t => `<span class="nav-card-tag">${escapeHtml(t)}</span>`).join('')}
+                        </div>
+                        <span class="nav-card-link">访问 →</span>
                     </div>
                 </a>
             `).join('');
+        }
+
+        // 初始化
+        const allCategories = new Set(AI_TOOLS.map(t => t.category.split(' ')[0]));
+        document.getElementById('statTotal').textContent = AI_TOOLS.length;
+        document.getElementById('statCat').textContent = allCategories.size;
+        renderTools(AI_TOOLS);
+
+        // 分类筛选
+        let currentCat = 'all';
+        document.getElementById('categoryFilter').addEventListener('click', e => {
+            if (!e.target.classList.contains('nav-filter-btn')) return;
+            document.querySelectorAll('.nav-filter-btn').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            currentCat = e.target.dataset.cat;
+            filterTools();
+        });
+
+        // 搜索
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', filterTools);
+
+        function filterTools() {
+            const keyword = searchInput.value.trim().toLowerCase();
+            const filtered = AI_TOOLS.filter(tool => {
+                const matchCat = currentCat === 'all' || tool.category.includes(currentCat);
+                const matchSearch = !keyword ||
+                    tool.name.toLowerCase().includes(keyword) ||
+                    tool.description.toLowerCase().includes(keyword) ||
+                    tool.tags.some(t => t.toLowerCase().includes(keyword));
+                return matchCat && matchSearch;
+            });
+            renderTools(filtered);
         }
     </script>
 </body>
