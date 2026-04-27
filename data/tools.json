@@ -1,0 +1,24 @@
+[
+  {
+    "id": "34f9d0de-ba05-8053-a0d3-e070d2a9a341",
+    "name": "即梦 AI",
+    "url": "https://jimeng.jianying.com",
+    "category": "图像 视频",
+    "description": "字节跳动旗下 AI 绘画工具，中文友好",
+    "tags": [
+      "【付费】【中文】"
+    ],
+    "rating": "⭐⭐⭐"
+  },
+  {
+    "id": "34f9d0de-ba05-800b-96b9-f97c2640fc76",
+    "name": "Midjourney",
+    "url": "https://www.midjourney.com",
+    "category": "图像",
+    "description": "AI 图像生成，文字描述生成高质量艺术图片",
+    "tags": [
+      "【付费】【英文】"
+    ],
+    "rating": "⭐⭐⭐"
+  }
+]
