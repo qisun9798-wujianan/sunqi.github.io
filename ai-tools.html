@@ -123,6 +123,34 @@
             </div>
         </div>
     </div>
-    <script src="js/notion.js"></script>
+    <script>
+        // AI 工具数据（从 Notion 同步）
+        const AI_TOOLS = [
+            {"name":"即梦 AI","url":"https://jimeng.jianying.com","category":"图像 视频","description":"字节跳动旗下 AI 绘画工具，中文友好","tags":["付费","中文"],"rating":"⭐⭐⭐"},
+            {"name":"Midjourney","url":"https://www.midjourney.com","category":"图像","description":"AI 图像生成，文字描述生成高质量艺术图片","tags":["付费","英文"],"rating":"⭐⭐⭐"}
+        ];
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]));
+        }
+
+        const container = document.getElementById('aiToolsGrid');
+        if (container && AI_TOOLS.length) {
+            container.innerHTML = AI_TOOLS.map(tool => `
+                <a class="ai-tool-card" href="${tool.url}" target="_blank" rel="noopener">
+                    <div class="ai-tool-header">
+                        <span class="ai-tool-name">${escapeHtml(tool.name)}</span>
+                        <span class="ai-tool-rating">${tool.rating}</span>
+                    </div>
+                    <div class="ai-tool-desc">${escapeHtml(tool.description)}</div>
+                    <div class="ai-tool-meta">
+                        <span class="ai-tool-cat">${escapeHtml(tool.category)}</span>
+                        ${tool.tags.map(t => `<span class="ai-tool-tag">${escapeHtml(t)}</span>`).join('')}
+                    </div>
+                </a>
+            `).join('');
+        }
+    </script>
 </body>
 </html>
