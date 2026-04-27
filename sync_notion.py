@@ -4,9 +4,9 @@ import json, os, sys, re
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 
-TOKEN = os.environ.get("NOTION_TOKEN", "")
-BLOG_DB = os.environ.get("BLOG_DB_ID", "")
-TOOLS_DB = os.environ.get("TOOLS_DB_ID", "")
+TOKEN = os.environ.get("NOTION_TOKEN", "").strip()
+BLOG_DB = os.environ.get("BLOG_DB_ID", "").strip()
+TOOLS_DB = os.environ.get("TOOLS_DB_ID", "").strip()
 
 if not TOKEN:
     print("ERROR: NOTION_TOKEN not set"); sys.exit(1)
