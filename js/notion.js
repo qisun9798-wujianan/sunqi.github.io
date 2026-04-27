@@ -1,16 +1,18 @@
 /**
  * Notion CMS 数据渲染
  * 从本地 JSON 文件读取 Notion 数据并渲染到页面
- * 数据通过 notion-sync.sh 脚本从 Notion API 同步
  */
 
 (function () {
     'use strict';
 
+    // 获取当前目录前缀（兼容 GitHub Pages 子路径）
+    const BASE = document.querySelector('script[src*="notion.js"]')?.src.replace(/js\/notion\.js$/, '') || '';
+
     /* ===== 工具函数 ===== */
     async function loadJson(path) {
         try {
-            const res = await fetch(path, { cache: 'no-cache' });
+            const res = await fetch(BASE + path, { cache: 'no-cache' });
             if (!res.ok) return null;
             return res.json();
         } catch (err) {
@@ -27,15 +29,15 @@
     /* ===== 博客文章 ===== */
     async function loadBlogPosts() {
         const posts = await loadJson('data/blog.json');
-        if (!posts || !posts.length) return;
-
         const grid = document.querySelector('.blog-grid');
         if (!grid) return;
 
-        const delayClasses = ['d3', 'd4', 'd5', 'd6'];
-        const sideClasses = ['rv-l', 'rv-r', 'rv-l', 'rv-r'];
+        // 最多取 3 篇，第 4 个位置留给 AI 工具导航
+        const validPosts = (posts || []).slice(0, 3);
+        const delayClasses = ['d3', 'd4', 'd5'];
+        const sideClasses = ['rv-l', 'rv-r', 'rv-l'];
 
-        grid.innerHTML = posts.slice(0, 4).map((post, i) => {
+        const postHtml = validPosts.map((post, i) => {
             const delay = delayClasses[i] || 'd3';
             const side = sideClasses[i] || 'rv-l';
             const dateStr = post.date ? post.date.replace(/-/g, '.') : '';
@@ -48,9 +50,21 @@
                 </a>
             `;
         }).join('');
+
+        // AI 工具导航入口卡片
+        const toolsCard = `
+            <a class="blog-card glass rv-r d6" href="ai-tools.html">
+                <div class="blog-date">AI NAV</div>
+                <div class="blog-title">AI 工具导航</div>
+                <div class="blog-excerpt">精选实用 AI 工具，提升创作效率。图像、视频、写作、代码...</div>
+                <div class="blog-tag">工具导航 →</div>
+            </a>
+        `;
+
+        grid.innerHTML = postHtml + toolsCard;
     }
 
-    /* ===== AI 工具导航 ===== */
+    /* ===== AI 工具导航（独立页面用） ===== */
     async function loadAiTools() {
         const tools = await loadJson('data/tools.json');
         if (!tools || !tools.length) return;
@@ -74,9 +88,14 @@
     }
 
     /* ===== 初始化 ===== */
-    document.addEventListener('DOMContentLoaded', () => {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            loadBlogPosts();
+            loadAiTools();
+        });
+    } else {
         loadBlogPosts();
         loadAiTools();
-    });
+    }
 
 })();

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 工具导航 — 红泥小火炉</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .ai-page { min-height: 100vh; padding: var(--pad); }
+        .ai-header {
+            text-align: center;
+            padding: clamp(2rem, 5vh, 4rem) 0;
+        }
+        .ai-header h1 {
+            font-family: var(--ff-display);
+            font-size: var(--fs-h2);
+            color: var(--ink);
+        }
+        .ai-header h1 em { color: var(--blush); font-style: italic; }
+        .ai-header p {
+            color: var(--ink-light);
+            font-size: var(--fs-sm);
+            margin-top: .5rem;
+        }
+        .ai-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--ink-mid);
+            text-decoration: none;
+            font-size: var(--fs-sm);
+            margin-bottom: 1rem;
+            transition: color .3s;
+        }
+        .ai-back:hover { color: var(--blush); }
+        .ai-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: clamp(.8rem, 1.5vw, 1.2rem);
+            max-width: min(92vw, 1100px);
+            margin: 0 auto;
+            padding-bottom: 3rem;
+        }
+        .ai-tool-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            padding: clamp(1rem, 1.8vw, 1.4rem);
+            text-decoration: none;
+            color: inherit;
+            transition: all .35s var(--ease-spring);
+            backdrop-filter: blur(8px);
+        }
+        .ai-tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(80, 50, 110, .08);
+            border-color: var(--blush-soft);
+        }
+        .ai-tool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: .5rem;
+        }
+        .ai-tool-name {
+            font-family: var(--ff-display);
+            font-size: var(--fs-body);
+            font-weight: 700;
+            color: var(--ink);
+        }
+        .ai-tool-rating {
+            font-size: var(--fs-sm);
+            color: var(--honey);
+        }
+        .ai-tool-desc {
+            font-size: var(--fs-sm);
+            color: var(--ink-mid);
+            line-height: 1.6;
+            margin-bottom: .8rem;
+        }
+        .ai-tool-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            align-items: center;
+        }
+        .ai-tool-cat {
+            font-size: var(--fs-xs);
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: var(--blush-wash);
+            color: var(--blush);
+            font-weight: 500;
+        }
+        .ai-tool-tag {
+            font-size: var(--fs-xs);
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: var(--cream-deep);
+            color: var(--ink-light);
+        }
+        .ai-loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--ink-light);
+        }
+    </style>
+</head>
+<body style="background: var(--cream);">
+    <div class="ai-page">
+        <div style="max-width: min(92vw, 1100px); margin: 0 auto;">
+            <a class="ai-back" href="index.html#blog">← 返回首页</a>
+            <div class="ai-header">
+                <h1>AI <em>工具导航</em></h1>
+                <p>精选提升效率的 AI 工具，持续更新</p>
+            </div>
+            <div class="ai-tools-grid" id="aiToolsGrid">
+                <div class="ai-loading">加载中...</div>
+            </div>
+        </div>
+    </div>
+    <script src="js/notion.js"></script>
+</body>
+</html>
