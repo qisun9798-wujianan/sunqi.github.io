@@ -713,8 +713,9 @@ img { max-width: 100%; object-fit: contain; }
     position: fixed;
     inset: 0;
     z-index: 10000;
-    background: rgba(42, 31, 50, .85);
-    backdrop-filter: blur(8px);
+    background: rgba(255, 250, 245, .55);
+    backdrop-filter: blur(20px) saturate(1.2);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -729,14 +730,16 @@ img { max-width: 100%; object-fit: contain; }
 }
 
 .video-modal-inner {
-    width: min(90vw, 960px);
+    width: min(85vw, 900px);
     aspect-ratio: 16 / 9;
     background: var(--ink);
-    border-radius: clamp(12px, 1.8vw, 18px);
+    border-radius: 16px;
     overflow: hidden;
     position: relative;
-    transform: scale(.9);
-    transition: transform .4s var(--ease-spring);
+    transform: scale(.88);
+    transition: transform .45s var(--ease-spring);
+    box-shadow: 0 20px 50px rgba(80, 50, 110, .18), 0 4px 12px rgba(80, 50, 110, .08);
+    border: 1px solid rgba(255, 255, 255, .5);
 }
 
 .video-modal.active .video-modal-inner {
@@ -751,19 +754,30 @@ img { max-width: 100%; object-fit: contain; }
 
 .video-modal-close {
     position: absolute;
-    top: -40px;
-    right: 0;
-    color: white;
-    font-size: var(--fs-h3);
+    top: 16px;
+    right: 20px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .6);
+    border: 1px solid var(--glass-border);
+    color: var(--ink-mid);
+    font-size: 1.2rem;
     cursor: pointer;
-    background: none;
-    border: none;
-    padding: 4px;
-    opacity: .7;
-    transition: opacity .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .3s var(--ease-spring);
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(80, 50, 110, .08);
+    padding: 0;
 }
 
-.video-modal-close:hover { opacity: 1; }
+.video-modal-close:hover {
+    background: white;
+    transform: scale(1.1);
+    color: var(--ink);
+}
 
 /* ===========================================
    P5 — BLOG 博客文章（预留）
