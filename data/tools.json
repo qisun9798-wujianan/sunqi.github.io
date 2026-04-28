@@ -6,7 +6,8 @@
     "category": "代码",
     "description": "字节出品，功能全面",
     "tags": [
-      "免费中文"
+      "免费",
+      "中文"
     ],
     "rating": "⭐⭐⭐",
     "logo": "https://www.google.com/s2/favicons?domain=doubao.com&sz=128"
@@ -18,7 +19,8 @@
     "category": "代码",
     "description": "超长上下文，国产标杆",
     "tags": [
-      "免费中文"
+      "免费",
+      "中文"
     ],
     "rating": "⭐⭐⭐",
     "logo": "https://www.google.com/s2/favicons?domain=kimi.moonshot.cn&sz=128"
@@ -30,7 +32,8 @@
     "category": "代码",
     "description": "长文本理解最强，中文友好",
     "tags": [
-      "付费英文"
+      "付费",
+      "英文"
     ],
     "rating": "⭐⭐⭐",
     "logo": "https://www.google.com/s2/favicons?domain=claude.ai&sz=128"
@@ -42,7 +45,8 @@
     "category": "图像",
     "description": "国内最大的 AI 绘画模型社区",
     "tags": [
-      "付费中文"
+      "付费",
+      "中文"
     ],
     "rating": "⭐⭐⭐",
     "logo": "https://www.google.com/s2/favicons?domain=liblib.art&sz=128"
@@ -54,7 +58,8 @@
     "category": "视频",
     "description": "快手出品，国产图像/视频双强",
     "tags": [
-      "付费中文"
+      "付费",
+      "中文"
     ],
     "rating": "⭐⭐⭐",
     "logo": "https://www.google.com/s2/favicons?domain=klingai.com&sz=128"
@@ -66,7 +71,8 @@
     "category": "视频",
     "description": "字节跳动旗下 AI 绘画工具，中文友好",
     "tags": [
-      "付费中文"
+      "付费",
+      "中文"
     ],
     "rating": "⭐⭐⭐",
     "logo": "https://www.google.com/s2/favicons?domain=jimeng.jianying.com&sz=128"
@@ -78,7 +84,8 @@
     "category": "图像",
     "description": "AI 图像生成，文字描述生成高质量艺术图片",
     "tags": [
-      "付费英文"
+      "付费",
+      "英文"
     ],
     "rating": "⭐⭐⭐",
     "logo": "https://www.google.com/s2/favicons?domain=www.midjourney.com&sz=128"
