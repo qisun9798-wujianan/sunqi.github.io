@@ -138,100 +138,146 @@
 
         /* Card */
         .nav-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 18px;
-            padding: clamp(1.1rem, 2vw, 1.5rem);
+            background: linear-gradient(145deg, rgba(255,255,255,.72), rgba(255,250,245,.48));
+            border: 1px solid rgba(255,255,255,.65);
+            border-radius: 20px;
+            padding: clamp(1.2rem, 2.2vw, 1.6rem);
             text-decoration: none; color: inherit;
-            transition: all .35s var(--ease-spring);
-            backdrop-filter: blur(8px);
+            transition: all .45s var(--ease-spring);
+            backdrop-filter: blur(16px) saturate(1.15);
+            -webkit-backdrop-filter: blur(16px) saturate(1.15);
             display: flex; flex-direction: column;
             position: relative; overflow: hidden;
+            box-shadow: 0 2px 10px rgba(80,50,110,.03), 0 1px 2px rgba(80,50,110,.02), inset 0 1px 0 rgba(255,255,255,.85);
         }
+        /* 顶部渐变装饰线 */
         .nav-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, var(--blush-mid), var(--wisteria-mid));
-            opacity: 0; transition: opacity .3s;
+            content: ''; position: absolute; top: 0; left: 24px; right: 24px; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--blush-soft), var(--wisteria-soft), transparent);
+            opacity: .5; transition: all .45s var(--ease-spring);
+        }
+        /* 背景光晕 */
+        .nav-card::after {
+            content: ''; position: absolute; top: -60%; right: -60%; width: 120%; height: 120%;
+            background: radial-gradient(circle at 70% 20%, rgba(232,120,138,.05) 0%, transparent 55%);
+            pointer-events: none; transition: all .45s;
         }
         .nav-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 16px 40px rgba(80,50,110,.1);
-            border-color: var(--blush-soft);
+            transform: translateY(-7px) scale(1.008);
+            box-shadow: 0 24px 60px rgba(80,50,110,.1), 0 8px 24px rgba(80,50,110,.05), inset 0 1px 0 rgba(255,255,255,.95);
+            border-color: rgba(232,120,138,.18);
         }
-        .nav-card:hover::before { opacity: 1; }
+        .nav-card:hover::before {
+            left: 12px; right: 12px; opacity: .9;
+            background: linear-gradient(90deg, transparent, var(--blush-mid), var(--wisteria-mid), transparent);
+            height: 2.5px;
+        }
+        .nav-card:hover::after {
+            top: -40%; right: -40%;
+            background: radial-gradient(circle at 70% 20%, rgba(232,120,138,.08) 0%, transparent 50%);
+        }
 
         .nav-card-head {
-            display: flex; align-items: center; gap: 12px;
-            margin-bottom: .7rem;
-        }
-        .nav-card-logo {
-            width: 46px; height: 46px; border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            font-family: var(--ff-display); font-size: 1.15rem; font-weight: 700;
-            color: white; flex-shrink: 0;
-            box-shadow: 0 4px 14px rgba(0,0,0,.12);
-            text-shadow: 0 1px 3px rgba(0,0,0,.2);
-            position: relative; overflow: hidden;
-            background: white;
-        }
-        .nav-card-logo::after {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%;
-            background: linear-gradient(180deg, rgba(255,255,255,.25), transparent);
-            border-radius: 14px 14px 0 0;
-            pointer-events: none;
-        }
-        .nav-card-logo img {
-            width: 100%; height: 100%;
-            object-fit: contain;
-            padding: 5px;
+            display: flex; align-items: center; gap: 14px;
+            margin-bottom: .8rem;
             position: relative; z-index: 1;
         }
-        .nav-card-logo.fallback { background: linear-gradient(135deg, var(--blush), var(--wisteria-mid)); }
-        .nav-card-logo.fallback.cat-img  { background: linear-gradient(135deg, #FF6B9D, #C44569); }
-        .nav-card-logo.fallback.cat-vid  { background: linear-gradient(135deg, #A29BFE, #6C5CE7); }
-        .nav-card-logo.fallback.cat-wri  { background: linear-gradient(135deg, #74B9FF, #0984E3); }
-        .nav-card-logo.fallback.cat-cod  { background: linear-gradient(135deg, #00B894, #00CEC9); }
-        .nav-card-logo.fallback.cat-mus  { background: linear-gradient(135deg, #FDCB6E, #E17055); }
+        .nav-card-logo {
+            width: 50px; height: 50px; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--ff-display); font-size: 1.2rem; font-weight: 700;
+            color: white; flex-shrink: 0;
+            position: relative; overflow: hidden;
+            background: linear-gradient(145deg, #fff 0%, #f8f4f0 100%);
+            box-shadow: 0 4px 16px rgba(0,0,0,.07), 0 1px 3px rgba(0,0,0,.04), inset 0 1px 0 rgba(255,255,255,1);
+            border: 1px solid rgba(230,220,210,.4);
+        }
+        .nav-card-logo::before {
+            content: ''; position: absolute; inset: 3px; border-radius: 12px;
+            background: linear-gradient(145deg, rgba(255,255,255,.9), rgba(255,250,245,.6));
+            z-index: 0;
+        }
+        .nav-card-logo img {
+            width: 60%; height: 60%;
+            object-fit: contain;
+            position: relative; z-index: 1;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,.06));
+        }
+        .nav-card-logo.fallback { 
+            background: linear-gradient(135deg, var(--blush), var(--wisteria-mid));
+            border: none;
+            box-shadow: 0 4px 18px rgba(232,120,138,.28), 0 1px 3px rgba(0,0,0,.08);
+        }
+        .nav-card-logo.fallback::before { display: none; }
+        .nav-card-logo.fallback.cat-img  { background: linear-gradient(135deg, #FF6B9D, #C44569); box-shadow: 0 4px 18px rgba(255,107,157,.3); }
+        .nav-card-logo.fallback.cat-vid  { background: linear-gradient(135deg, #A29BFE, #6C5CE7); box-shadow: 0 4px 18px rgba(162,155,254,.3); }
+        .nav-card-logo.fallback.cat-wri  { background: linear-gradient(135deg, #74B9FF, #0984E3); box-shadow: 0 4px 18px rgba(116,185,255,.3); }
+        .nav-card-logo.fallback.cat-cod  { background: linear-gradient(135deg, #00B894, #00CEC9); box-shadow: 0 4px 18px rgba(0,184,148,.3); }
+        .nav-card-logo.fallback.cat-mus  { background: linear-gradient(135deg, #FDCB6E, #E17055); box-shadow: 0 4px 18px rgba(253,203,110,.3); }
         .nav-card-logo.fallback.cat-def  { background: linear-gradient(135deg, var(--blush), var(--wisteria-mid)); }
 
         .nav-card-meta {
             flex: 1; min-width: 0;
-            display: flex; flex-direction: column; gap: 2px;
+            display: flex; flex-direction: column; gap: 3px;
         }
         .nav-card-name {
             font-family: var(--ff-display); font-size: var(--fs-body);
-            font-weight: 700; color: var(--ink); line-height: 1.3;
+            font-weight: 700; color: var(--ink); line-height: 1.25;
+            letter-spacing: -.01em;
         }
         .nav-card-rating {
-            font-size: var(--fs-xs); color: var(--honey); letter-spacing: 1px;
+            display: flex; align-items: center; gap: 3px;
+            font-size: var(--fs-xs);
         }
+        .nav-card-rating svg {
+            width: 13px; height: 13px;
+        }
+        .nav-card-rating .star-filled { fill: #F5A623; }
+        .nav-card-rating .star-empty  { fill: rgba(200,180,160,.35); }
         .nav-card-desc {
-            font-size: var(--fs-sm); color: var(--ink-mid); line-height: 1.6;
-            margin-bottom: .9rem; flex: 1;
+            font-size: 13px; color: var(--ink-mid); line-height: 1.7;
+            margin: .5rem 0 .7rem;
+            flex: 1;
+            position: relative; z-index: 1;
         }
         .nav-card-footer {
             display: flex; align-items: center; justify-content: space-between; gap: 8px;
             flex-wrap: wrap;
+            padding-top: .7rem;
+            border-top: 1px solid rgba(210,190,170,.12);
+            position: relative; z-index: 1;
         }
         .nav-card-tags {
-            display: flex; gap: 5px; flex-wrap: wrap;
+            display: flex; gap: 6px; flex-wrap: wrap;
         }
         .nav-card-tag {
-            font-size: var(--fs-xs); padding: 3px 10px; border-radius: 6px;
-            background: var(--cream-deep); color: var(--ink-light);
-            border: 1px solid var(--glass-border);
+            font-size: 11px; padding: 4px 11px; border-radius: 20px;
+            background: rgba(255,255,255,.55);
+            color: var(--ink-light);
+            border: 1px solid rgba(210,190,170,.18);
+            letter-spacing: .03em;
+            transition: all .2s var(--ease-spring);
+        }
+        .nav-card:hover .nav-card-tag {
+            background: rgba(255,255,255,.85);
+            border-color: rgba(210,190,170,.25);
         }
         .nav-card-tag.cat {
-            background: linear-gradient(135deg, var(--blush-wash), rgba(168,130,210,.1));
-            color: var(--blush); border-color: var(--blush-soft);
+            background: linear-gradient(135deg, rgba(232,120,138,.08), rgba(168,130,210,.06));
+            color: var(--blush); 
+            border-color: rgba(232,120,138,.18);
             font-weight: 600;
-            box-shadow: inset 0 1px 1px rgba(255,255,255,.5);
+        }
+        .nav-card:hover .nav-card-tag.cat {
+            background: linear-gradient(135deg, rgba(232,120,138,.12), rgba(168,130,210,.1));
+            border-color: rgba(232,120,138,.25);
         }
         .nav-card-link {
-            font-size: var(--fs-xs); color: var(--blush); font-weight: 600;
-            display: flex; align-items: center; gap: 3px;
-            opacity: 0; transform: translateX(-6px);
-            transition: all .3s var(--ease-spring);
+            font-size: 12px; color: var(--blush); font-weight: 600;
+            display: flex; align-items: center; gap: 4px;
+            opacity: 0; transform: translateX(-8px);
+            transition: all .35s var(--ease-spring);
+            letter-spacing: .02em;
         }
         .nav-card:hover .nav-card-link { opacity: 1; transform: translateX(0); }
 
@@ -313,6 +359,16 @@
 
         const CAT_LOGO_CLASS = {'图像':'img','视频':'vid','写作':'wri','代码':'cod','音乐':'mus'};
 
+        const STAR_SVG = '<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
+        function renderStars(ratingStr) {
+            const count = (ratingStr.match(/⭐/g) || []).length;
+            let html = '';
+            for (let i = 0; i < 5; i++) {
+                html += `<svg class="${i < count ? 'star-filled' : 'star-empty'}" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
+            }
+            return html;
+        }
+
         function renderTools(tools) {
             const grid = document.getElementById('toolsGrid');
             if (!tools.length) {
@@ -331,7 +387,7 @@
                         <div class="nav-card-logo ${fallbackClass}">${logoHtml}</div>
                         <div class="nav-card-meta">
                             <span class="nav-card-name">${escapeHtml(tool.name)}</span>
-                            <span class="nav-card-rating">${tool.rating}</span>
+                            <span class="nav-card-rating">${renderStars(tool.rating)}</span>
                         </div>
                     </div>
                     <div class="nav-card-desc">${escapeHtml(tool.description)}</div>
