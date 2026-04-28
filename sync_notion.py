@@ -100,6 +100,9 @@ for p in tools:
     props = p["properties"]
     raw_tags = [t.get("name", "") for t in props.get("Tags", {}).get("multi_select", [])]
     url = props.get("URL", {}).get("url", "")
+    # 自动补全 https:// 前缀
+    if url and not url.startswith(("http://", "https://")):
+        url = "https://" + url
     # 自动从 URL 生成 favicon，或读取 Notion 中的 Logo 字段
     logo = props.get("Logo", {}).get("url", "")
     if not logo and url:
@@ -107,11 +110,18 @@ for p in tools:
         domain = urlparse(url).netloc or urlparse(url).path.split('/')[0]
         if domain:
             logo = f"https://www.google.com/s2/favicons?domain={domain}&sz=128"
+    # 支持 Select 或 Multi-select 类型的 Category
+    cat_field = props.get("Category", {})
+    cat_name = ""
+    if "select" in cat_field and cat_field["select"]:
+        cat_name = cat_field["select"].get("name", "")
+    elif "multi_select" in cat_field and cat_field["multi_select"]:
+        cat_name = cat_field["multi_select"][0].get("name", "") if cat_field["multi_select"] else ""
     ai_tools.append({
         "id": p["id"],
         "name": get_title(props),
         "url": url,
-        "category": props.get("Category", {}).get("select", {}).get("name", "").split()[0] if props.get("Category", {}).get("select", {}).get("name", "") else "",
+        "category": cat_name.split()[0] if cat_name else "",
         "description": get_rt(props, "Description"),
         "tags": clean_tags(raw_tags),
         "rating": props.get("Rating", {}).get("select", {}).get("name", ""),
