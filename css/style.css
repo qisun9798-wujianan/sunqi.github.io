@@ -323,10 +323,18 @@ img { max-width: 100%; object-fit: contain; }
     left: 50%;
     top: 0;
     bottom: 0;
-    width: 1.5px;
-    background: linear-gradient(180deg, var(--blush-soft), var(--wisteria-soft), var(--pistachio-soft));
-    transform: translateX(-50%);
-    opacity: .5;
+    width: 2px;
+    background: linear-gradient(180deg, var(--blush), var(--wisteria-mid), var(--pistachio));
+    transform: translateX(-50%) scaleY(0);
+    transform-origin: top center;
+    opacity: .55;
+    border-radius: 1px;
+    transition: transform 2.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 进入视口触发线条绘制 */
+.slide.visible .timeline::before {
+    transform: translateX(-50%) scaleY(1);
 }
 
 .timeline-item {
@@ -346,13 +354,44 @@ img { max-width: 100%; object-fit: contain; }
     height: 10px;
     border-radius: 50%;
     background: var(--cream);
-    border: 2px solid var(--blush);
+    border: 2.5px solid var(--blush);
     top: clamp(.9rem, 1.5vw, 1.3rem);
     z-index: 2;
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.4s ease-out, transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .timeline-item:nth-child(odd)::before { right: -6px; }
 .timeline-item:nth-child(even)::before { left: -6px; }
+
+/* 节点依次弹出（配合线条绘制节奏） */
+.slide.visible .timeline-item:nth-child(1)::before {
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: 0.5s;
+}
+.slide.visible .timeline-item:nth-child(2)::before {
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: 1.1s;
+}
+.slide.visible .timeline-item:nth-child(3)::before {
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: 1.7s;
+}
+
+/* 节点弹出后的粉色脉冲光晕 */
+@keyframes dotPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(232, 120, 138, 0.35); }
+    50% { box-shadow: 0 0 0 10px rgba(232, 120, 138, 0); }
+}
+
+.slide.visible .timeline-item::before {
+    animation: dotPulse 2.2s ease-in-out infinite;
+    animation-delay: 2.8s;
+}
 
 .timeline-date {
     font-family: var(--ff-mono);
