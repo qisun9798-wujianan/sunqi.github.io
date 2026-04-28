@@ -84,7 +84,7 @@ for p in blog:
         "title": get_title(props),
         "date": props.get("date", {}).get("date", {}).get("start", ""),
         "category": props.get("Category", {}).get("select", {}).get("name", ""),
-        "excerpt": get_rt(props, "Excerpt").replace("\u2022", "").strip()
+        "excerpt": get_rt(props, "Excerpt").replace("\u2022", "").strip(),
         "url": p.get("url", "")
     })
 with open("data/blog.json", "w", encoding="utf-8") as f:
@@ -99,14 +99,23 @@ ai_tools = []
 for p in tools:
     props = p["properties"]
     raw_tags = [t.get("name", "") for t in props.get("Tags", {}).get("multi_select", [])]
+    url = props.get("URL", {}).get("url", "")
+    # 自动从 URL 生成 favicon，或读取 Notion 中的 Logo 字段
+    logo = props.get("Logo", {}).get("url", "")
+    if not logo and url:
+        from urllib.parse import urlparse
+        domain = urlparse(url).netloc or urlparse(url).path.split('/')[0]
+        if domain:
+            logo = f"https://www.google.com/s2/favicons?domain={domain}&sz=128"
     ai_tools.append({
         "id": p["id"],
         "name": get_title(props),
-        "url": props.get("URL", {}).get("url", ""),
+        "url": url,
         "category": props.get("Category", {}).get("select", {}).get("name", "").split()[0] if props.get("Category", {}).get("select", {}).get("name", "") else "",
         "description": get_rt(props, "Description"),
         "tags": clean_tags(raw_tags),
-        "rating": props.get("Rating", {}).get("select", {}).get("name", "")
+        "rating": props.get("Rating", {}).get("select", {}).get("name", ""),
+        "logo": logo
     })
 with open("data/tools.json", "w", encoding="utf-8") as f:
     json.dump(ai_tools, f, ensure_ascii=False, indent=2)
