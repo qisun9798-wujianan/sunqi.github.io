@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章 — 红泥小火炉</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root { --nav-pad: clamp(1.2rem, 3vw, 2.5rem); }
+        .post-page { min-height: 100vh; background: var(--cream); }
+        .post-header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(255,250,245,.85);
+            backdrop-filter: blur(16px) saturate(1.2);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .post-header-inner {
+            max-width: 720px; margin: 0 auto;
+            padding: var(--nav-pad);
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .post-back {
+            display: inline-flex; align-items: center; gap: 6px;
+            text-decoration: none; color: var(--ink-mid);
+            font-size: var(--fs-sm); transition: color .2s;
+        }
+        .post-back:hover { color: var(--blush); }
+        .post-brand {
+            font-family: var(--ff-display); font-size: var(--fs-body); font-weight: 700;
+            color: var(--ink); text-decoration: none;
+        }
+        .post-brand span { color: var(--blush); font-style: italic; font-weight: 400; }
+        .post-hero {
+            text-align: center; padding: clamp(2rem, 5vh, 3.5rem) var(--nav-pad);
+            position: relative;
+        }
+        .post-hero::before {
+            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 60px; height: 3px;
+            background: linear-gradient(90deg, var(--blush), var(--wisteria-mid));
+            border-radius: 2px;
+        }
+        .post-category {
+            display: inline-block;
+            font-size: var(--fs-xs); color: var(--blush); font-weight: 600;
+            letter-spacing: .1em; text-transform: uppercase;
+            padding: 4px 14px; border-radius: 100px;
+            background: linear-gradient(135deg, var(--blush-wash), rgba(168,130,210,.08));
+            border: 1px solid var(--blush-soft);
+            margin-bottom: 1rem;
+        }
+        .post-title {
+            font-family: var(--ff-display);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700; color: var(--ink); line-height: 1.2;
+            max-width: 640px; margin: 0 auto .8rem;
+        }
+        .post-meta {
+            font-size: var(--fs-sm); color: var(--ink-faint);
+            display: flex; gap: 1rem; justify-content: center; align-items: center;
+        }
+        .post-meta-sep { width: 4px; height: 4px; border-radius: 50%; background: var(--ink-whisper); }
+        .post-content-wrap {
+            max-width: 680px; margin: 0 auto;
+            padding: 0 var(--nav-pad) clamp(3rem, 6vh, 5rem);
+        }
+        .post-content {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            backdrop-filter: blur(12px);
+            font-size: var(--fs-body); color: var(--ink-mid); line-height: 1.8;
+        }
+        .post-content p { margin-bottom: 1.2rem; }
+        .post-notion-tip {
+            margin-top: 2rem; padding: 1.2rem;
+            background: linear-gradient(135deg, rgba(232,120,138,.06), rgba(168,130,210,.06));
+            border: 1px solid var(--blush-soft);
+            border-radius: 14px; text-align: center;
+        }
+        .post-notion-tip p { font-size: var(--fs-sm); color: var(--ink-light); margin: 0 0 .6rem; }
+        .post-notion-tip a {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 8px 20px; border-radius: 100px;
+            background: linear-gradient(135deg, var(--blush), var(--wisteria-mid));
+            color: white; text-decoration: none; font-size: var(--fs-sm); font-weight: 600;
+            box-shadow: 0 4px 14px rgba(232,120,138,.3);
+            transition: transform .2s;
+        }
+        .post-notion-tip a:hover { transform: translateY(-2px); }
+        .post-footer {
+            text-align: center; padding: 2rem var(--nav-pad);
+            border-top: 1px solid var(--glass-border);
+            color: var(--ink-faint); font-size: var(--fs-xs);
+        }
+        .post-empty { text-align: center; padding: 6rem var(--nav-pad); color: var(--ink-light); }
+    </style>
+</head>
+<body>
+    <div class="post-page">
+        <header class="post-header">
+            <div class="post-header-inner">
+                <a class="post-back" href="index.html#blog">← 返回博客</a>
+                <a class="post-brand" href="index.html">红泥小火炉 <span> Blog</span></a>
+            </div>
+        </header>
+        <article id="postArticle">
+            <div class="post-empty">加载中...</div>
+        </article>
+        <footer class="post-footer">
+            © 红泥小火炉 · 由 Notion 驱动
+        </footer>
+    </div>
+    <script>
+    (function() {
+        const params = new URLSearchParams(window.location.search);
+        const postId = params.get('id');
+        const article = document.getElementById('postArticle');
+        if (!postId) { article.innerHTML = '<div class="post-empty">文章不存在</div>'; return; }
+        fetch('data/blog.json')
+            .then(r => r.json())
+            .then(posts => {
+                const post = posts.find(p => p.id === postId);
+                if (!post) { article.innerHTML = '<div class="post-empty">文章未找到</div>'; return; }
+                document.title = post.title + ' — 红泥小火炉';
+                article.innerHTML = '<div class="post-hero"><div class="post-category">' + escapeHtml(post.category) + '</div><h1 class="post-title">' + escapeHtml(post.title) + '</h1><div class="post-meta"><span>' + (post.date ? post.date.replace(/-/g, '.') : '') + '</span><span class="post-meta-sep"></span><span>红泥小火炉</span></div></div><div class="post-content-wrap"><div class="post-content"><p>' + escapeHtml(post.excerpt) + '</p><p>（正文内容正在从 Notion 迁移中...）</p></div><div class="post-notion-tip"><p>完整内容已在 Notion 上发布</p><a href="' + post.url + '" target="_blank" rel="noopener">在 Notion 中阅读全文 →</a></div></div>';
+            })
+            .catch(() => { article.innerHTML = '<div class="post-empty">加载失败，请刷新重试</div>'; });
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]));
+        }
+    })();
+    </script>
+</body>
+</html>

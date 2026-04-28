@@ -6,6 +6,12 @@
 (function () {
     'use strict';
 
+    // 本地 file:// 协议下 fetch 会被浏览器拦截，跳过动态加载
+    if (window.location.protocol === 'file:') {
+        console.log('[Notion CMS] file:// 协议 detected，跳过 JSON 加载，使用页面内联数据');
+        return;
+    }
+
     /* ===== 工具函数 ===== */
     async function loadJson(path) {
         try {

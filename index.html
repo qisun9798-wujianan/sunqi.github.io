@@ -315,35 +315,19 @@
             <div class="divider rv d2"></div>
 
             <div class="blog-grid rv d3" id="blogGrid">
-                <!-- 内容由下方脚本动态渲染 -->
+                <a class="blog-card glass rv-l d3" href="blog-post.html?id=34f9d0de-ba05-8078-95a1-ca1accbca848">
+                    <div class="blog-date">2026.04.27</div>
+                    <div class="blog-title">如何用设计讲好品牌故事</div>
+                    <div class="blog-excerpt">从视觉语言到情感共鸣，探索品牌设计的核心方法论…</div>
+                    <div class="blog-tag">设计思考 →</div>
+                </a>
+                <a class="blog-card glass rv-r d6" href="ai-tools.html">
+                    <div class="blog-date">AI NAV</div>
+                    <div class="blog-title">AI 工具导航</div>
+                    <div class="blog-excerpt">精选实用 AI 工具，提升创作效率。图像、视频、写作、代码...</div>
+                    <div class="blog-tag">工具导航 →</div>
+                </a>
             </div>
-            <script>
-                (function(){
-                    const BLOG_POSTS = [{"id": "34f9d0de-ba05-8078-95a1-ca1accbca848", "title": "如何用设计讲好品牌故事", "date": "2026-04-27", "category": "设计思考", "excerpt": "从视觉语言到情感共鸣，探索品牌设计的核心方法论…", "url": "https://www.notion.so/34f9d0deba05807895a1ca1accbca848"}];
-                    const grid = document.getElementById('blogGrid');
-                    if (!grid) return;
-                    const posts = BLOG_POSTS.slice(0, 3);
-                    const delays = ['d3','d4','d5'];
-                    const sides = ['rv-l','rv-r','rv-l'];
-                    let html = posts.map((p,i) => `
-                        <a class="blog-card glass ${sides[i]} ${delays[i]}" href="${p.url}" target="_blank" rel="noopener">
-                            <div class="blog-date">${p.date.replace(/-/g,'.')}</div>
-                            <div class="blog-title">${p.title}</div>
-                            <div class="blog-excerpt">${p.excerpt}</div>
-                            <div class="blog-tag">${p.category} →</div>
-                        </a>
-                    `).join('');
-                    html += `
-                        <a class="blog-card glass rv-r d6" href="ai-tools.html">
-                            <div class="blog-date">AI NAV</div>
-                            <div class="blog-title">AI 工具导航</div>
-                            <div class="blog-excerpt">精选实用 AI 工具，提升创作效率。图像、视频、写作、代码...</div>
-                            <div class="blog-tag">工具导航 →</div>
-                        </a>
-                    `;
-                    grid.innerHTML = html;
-                })();
-            </script>
         </div>
         <span class="sn">05</span>
     </section>
