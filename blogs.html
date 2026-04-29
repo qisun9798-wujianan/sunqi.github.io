@@ -6,11 +6,10 @@
     <title>博客 — 红泥小火炉</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/variables.css">
     <style>
         :root { --nav-pad: clamp(1.2rem, 3vw, 2.5rem); }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: var(--ff-body);
@@ -20,241 +19,277 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Header */
-        .blogs-header {
+        /* ========== Header ========== */
+        .b-header {
             position: sticky; top: 0; z-index: 100;
-            background: rgba(255,250,245,.88);
-            backdrop-filter: blur(16px) saturate(1.2);
+            background: rgba(255,250,245,.9);
+            backdrop-filter: blur(20px) saturate(1.2);
             border-bottom: 1px solid var(--glass-border);
         }
-        .blogs-header-inner {
-            max-width: 800px; margin: 0 auto;
+        .b-header-inner {
+            max-width: 720px; margin: 0 auto;
             padding: var(--nav-pad);
             display: flex; align-items: center; justify-content: space-between;
         }
-        .blogs-back {
+        .b-back {
             display: inline-flex; align-items: center; gap: 6px;
-            text-decoration: none; color: var(--ink-mid);
-            font-size: var(--fs-sm); transition: color .2s;
+            text-decoration: none; color: var(--ink-faint);
+            font-size: var(--fs-sm); font-weight: 500;
+            transition: color .25s; letter-spacing: .02em;
         }
-        .blogs-back:hover { color: var(--blush); }
-        .blogs-brand {
-            font-family: var(--ff-display); font-size: var(--fs-body); font-weight: 700;
-            color: var(--ink); text-decoration: none;
-        }
-        .blogs-brand span { color: var(--blush); font-style: italic; font-weight: 400; }
-
-        /* Main */
-        .blogs-main {
-            max-width: 800px; margin: 0 auto;
-            padding: clamp(1.5rem, 4vh, 3rem) var(--nav-pad) clamp(3rem, 6vh, 5rem);
-        }
-
-        /* Title area */
-        .blogs-title-area {
-            text-align: center; margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
-        }
-        .blogs-title-area h1 {
+        .b-back:hover { color: var(--blush); }
+        .b-brand {
             font-family: var(--ff-display);
-            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-            font-weight: 700; color: var(--ink);
-            margin-bottom: .4rem;
+            font-size: var(--fs-body); font-weight: 700;
+            color: var(--ink); text-decoration: none;
+            letter-spacing: -.01em;
         }
-        .blogs-title-area p {
+        .b-brand span { color: var(--blush); font-style: italic; font-weight: 400; }
+
+        /* ========== Hero Title ========== */
+        .b-hero {
+            max-width: 720px; margin: 0 auto;
+            padding: clamp(2.5rem, 6vh, 4rem) var(--nav-pad) clamp(1rem, 2vh, 1.5rem);
+            text-align: center; position: relative;
+        }
+        .b-hero-deco {
+            width: 40px; height: 3px;
+            background: linear-gradient(90deg, var(--blush), var(--wisteria-mid));
+            border-radius: 2px; margin: 0 auto 1.2rem;
+        }
+        .b-hero h1 {
+            font-family: var(--ff-display);
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 700; color: var(--ink);
+            letter-spacing: -.03em; line-height: 1.1;
+            margin-bottom: .6rem;
+        }
+        .b-hero p {
             font-size: var(--fs-sm); color: var(--ink-faint);
+            font-weight: 400; letter-spacing: .02em;
         }
 
-        /* Category pills */
-        .blogs-pills {
+        /* ========== Filter Pills ========== */
+        .b-filters {
+            max-width: 720px; margin: 0 auto;
+            padding: 0 var(--nav-pad) clamp(1.5rem, 3vh, 2rem);
             display: flex; flex-wrap: wrap; gap: 8px;
             justify-content: center;
-            margin-bottom: clamp(1.5rem, 3vh, 2rem);
         }
-        .blogs-pill {
-            padding: 6px 16px; border-radius: 100px;
+        .b-pill {
+            padding: 7px 18px; border-radius: 100px;
             font-size: var(--fs-sm); font-weight: 500;
-            background: rgba(255,255,255,.6);
+            background: rgba(255,255,255,.5);
             border: 1px solid var(--glass-border);
-            color: var(--ink-mid);
-            cursor: pointer; transition: all .25s;
+            color: var(--ink-mid); cursor: pointer;
+            transition: all .3s cubic-bezier(.22,1,.36,1);
             backdrop-filter: blur(6px);
+            letter-spacing: .01em;
         }
-        .blogs-pill:hover {
+        .b-pill:hover {
             background: var(--blush-wash);
             border-color: var(--blush-soft);
             color: var(--blush);
+            transform: translateY(-1px);
         }
-        .blogs-pill.active {
+        .b-pill.active {
             background: linear-gradient(135deg, var(--blush), var(--wisteria-mid));
             border-color: transparent;
             color: white;
-            box-shadow: 0 4px 14px rgba(232,120,138,.3);
+            box-shadow: 0 4px 16px rgba(232,120,138,.28);
         }
 
-        /* Blog list */
-        .blogs-list {
-            display: flex; flex-direction: column; gap: clamp(.8rem, 1.5vh, 1.2rem);
+        /* ========== Article List ========== */
+        .b-list {
+            max-width: 720px; margin: 0 auto;
+            padding: 0 var(--nav-pad) clamp(3rem, 6vh, 5rem);
+            display: flex; flex-direction: column; gap: 0;
         }
-        .blogs-item {
-            display: flex; align-items: stretch; gap: clamp(1rem, 2vw, 1.5rem);
-            padding: clamp(1rem, 2vw, 1.4rem);
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
+
+        .b-item {
+            display: flex; align-items: flex-start;
+            gap: clamp(1.2rem, 2.5vw, 2rem);
+            padding: clamp(1.4rem, 2.5vh, 2rem) 0;
             text-decoration: none; color: inherit;
-            transition: transform .35s var(--ease-spring), box-shadow .35s;
-            cursor: pointer;
+            border-bottom: 1px solid rgba(220,210,200,.2);
+            transition: all .4s cubic-bezier(.22,1,.36,1);
             position: relative;
-            overflow: hidden;
         }
-        .blogs-item::before {
-            content: ''; position: absolute; top: 0; left: 0; bottom: 0;
-            width: 3px;
+        .b-item:first-child { padding-top: 0; }
+
+        /* 左侧悬浮竖线装饰 */
+        .b-item::before {
+            content: ''; position: absolute;
+            left: -12px; top: 20%; bottom: 20%; width: 2px;
             background: linear-gradient(180deg, var(--blush), var(--wisteria-mid));
-            opacity: 0; transition: opacity .3s;
+            border-radius: 2px; opacity: 0;
+            transform: scaleY(.6);
+            transition: all .35s cubic-bezier(.22,1,.36,1);
         }
-        .blogs-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 28px rgba(80,50,110,.08), inset 0 1px 0 rgba(255,255,255,.4);
+        .b-item:hover::before {
+            opacity: 1; transform: scaleY(1); left: -16px;
         }
-        .blogs-item:hover::before { opacity: 1; }
 
-        .blogs-item-left {
+        .b-item:hover {
+            padding-left: 8px;
+        }
+        .b-item:hover .b-item-title {
+            color: var(--blush);
+        }
+
+        /* Date column */
+        .b-item-date {
             display: flex; flex-direction: column; align-items: center;
-            gap: 4px; min-width: clamp(50px, 8vw, 70px); flex-shrink: 0;
-            padding-right: clamp(.8rem, 1.5vw, 1.2rem);
-            border-right: 1px solid var(--glass-border);
+            min-width: clamp(48px, 7vw, 60px); flex-shrink: 0;
+            padding-top: 2px;
         }
-        .blogs-item-day {
+        .b-item-day {
             font-family: var(--ff-display);
-            font-size: clamp(1.4rem, 2.5vw, 2rem);
-            font-weight: 700; color: var(--blush); line-height: 1;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 700; color: var(--ink);
+            line-height: 1; letter-spacing: -.03em;
         }
-        .blogs-item-month {
-            font-size: var(--fs-xs); color: var(--ink-faint);
-            text-transform: uppercase; letter-spacing: .05em;
+        .b-item-mon {
+            font-size: 10px; color: var(--ink-faint);
+            text-transform: uppercase; letter-spacing: .1em;
+            font-weight: 500; margin-top: 3px;
         }
-        .blogs-item-year {
+        .b-item-year {
             font-family: var(--ff-mono);
-            font-size: var(--fs-xs); color: var(--ink-whisper);
+            font-size: 10px; color: var(--ink-whisper);
+            margin-top: 2px;
         }
 
-        .blogs-item-right {
+        /* Content column */
+        .b-item-body {
             flex: 1; min-width: 0;
-            display: flex; flex-direction: column; gap: 4px;
+            display: flex; flex-direction: column; gap: 6px;
         }
-        .blogs-item-title {
+        .b-item-title {
             font-family: var(--ff-display);
-            font-size: clamp(.95rem, 1.6vw, 1.15rem);
-            font-weight: 700; color: var(--ink);
-            line-height: 1.35;
+            font-size: clamp(1.05rem, 2vw, 1.35rem);
+            font-weight: 600; color: var(--ink);
+            line-height: 1.35; letter-spacing: -.01em;
+            transition: color .3s;
         }
-        .blogs-item-excerpt {
+        .b-item-excerpt {
             font-size: var(--fs-sm); color: var(--ink-mid);
-            line-height: 1.6;
+            line-height: 1.7;
             display: -webkit-box; -webkit-line-clamp: 2;
             -webkit-box-orient: vertical; overflow: hidden;
         }
-        .blogs-item-meta {
-            display: flex; align-items: center; gap: 8px;
-            margin-top: auto; padding-top: 6px;
+        .b-item-meta {
+            display: flex; align-items: center; gap: 10px;
+            margin-top: 2px;
         }
-        .blogs-item-cat {
-            font-size: var(--fs-xs); font-weight: 600;
+        .b-item-cat {
+            font-size: 10px; font-weight: 600;
+            letter-spacing: .08em; text-transform: uppercase;
             color: var(--blush);
-            padding: 2px 10px; border-radius: 100px;
-            background: var(--blush-wash);
+            padding: 3px 10px; border-radius: 100px;
+            background: linear-gradient(135deg, var(--blush-wash), rgba(232,120,138,.04));
+            border: 1px solid var(--blush-soft);
         }
-        .blogs-item-arrow {
-            margin-left: auto;
-            font-size: var(--fs-sm); color: var(--ink-whisper);
-            transition: transform .25s, color .25s;
+        .b-item-read {
+            font-size: var(--fs-xs); color: var(--ink-whisper);
+            transition: color .3s, transform .3s;
+            display: inline-flex; align-items: center; gap: 4px;
         }
-        .blogs-item:hover .blogs-item-arrow {
-            transform: translateX(4px); color: var(--blush);
+        .b-item:hover .b-item-read {
+            color: var(--blush);
+        }
+        .b-item-read::after {
+            content: '→'; transition: transform .3s;
+            display: inline-block;
+        }
+        .b-item:hover .b-item-read::after {
+            transform: translateX(3px);
         }
 
         /* Empty state */
-        .blogs-empty {
-            text-align: center; padding: 4rem 2rem;
-            color: var(--ink-faint); font-size: var(--fs-sm);
+        .b-empty {
+            text-align: center; padding: 5rem 2rem;
+            color: var(--ink-faint);
+        }
+        .b-empty-icon {
+            font-size: 3rem; opacity: .3; margin-bottom: 1rem;
         }
 
         /* Footer */
-        .blogs-footer {
+        .b-footer {
             text-align: center; padding: 2rem var(--nav-pad);
             border-top: 1px solid var(--glass-border);
-            color: var(--ink-faint); font-size: var(--fs-xs);
+            color: var(--ink-whisper);
+            font-size: var(--fs-xs); letter-spacing: .04em;
         }
 
-        @media (max-width: 600px) {
-            .blogs-item { flex-direction: column; gap: .6rem; }
-            .blogs-item-left {
-                flex-direction: row; align-items: baseline; gap: 6px;
-                border-right: none; border-bottom: 1px solid var(--glass-border);
-                padding-right: 0; padding-bottom: .6rem; min-width: auto;
-            }
+        /* Responsive */
+        @media (max-width: 520px) {
+            .b-item { gap: .8rem; }
+            .b-item-day { font-size: 1.4rem; }
+            .b-item::before { display: none; }
         }
     </style>
 </head>
 <body>
-    <header class="blogs-header">
-        <div class="blogs-header-inner">
-            <a class="blogs-back" href="index.html#blog">← 返回</a>
-            <a class="blogs-brand" href="index.html">红泥小火炉 <span> Blog</span></a>
-            <div style="width: 48px;"></div>
+    <header class="b-header">
+        <div class="b-header-inner">
+            <a class="b-back" href="index.html#blog">← 返回</a>
+            <a class="b-brand" href="index.html">红泥小火炉 <span>Blog</span></a>
+            <div style="width: 56px;"></div>
         </div>
     </header>
 
-    <main class="blogs-main">
-        <div class="blogs-title-area">
-            <h1>博客文章</h1>
-            <p>设计与技术的思考记录</p>
-        </div>
+    <div class="b-hero">
+        <div class="b-hero-deco"></div>
+        <h1>博客文章</h1>
+        <p>设计与技术的思考记录</p>
+    </div>
 
-        <div class="blogs-pills" id="blogPills">
-            <button class="blogs-pill active" data-cat="all">全部</button>
-        </div>
+    <div class="b-filters" id="bFilters">
+        <button class="b-pill active" data-cat="all">全部</button>
+    </div>
 
-        <div class="blogs-list" id="blogList">
-            <div class="blogs-empty">加载中...</div>
+    <div class="b-list" id="bList">
+        <div class="b-empty">
+            <div class="b-empty-icon">✦</div>
+            <p>加载中...</p>
         </div>
-    </main>
+    </div>
 
-    <footer class="blogs-footer">
+    <footer class="b-footer">
         © 红泥小火炉 · 由 Notion 驱动
     </footer>
 
     <script>
     (function() {
-        // 内联博客数据（同步自 Notion）
         const BLOG_POSTS = [
             {"id": "34f9d0de-ba05-8078-95a1-ca1accbca848", "title": "如何用设计讲好品牌故事", "date": "2026-04-27", "category": "设计思考", "excerpt": "从视觉语言到情感共鸣，探索品牌设计的核心方法论…", "url": "https://www.notion.so/34f9d0deba05807895a1ca1accbca848"}
         ];
 
-        const listEl = document.getElementById('blogList');
-        const pillsEl = document.getElementById('blogPills');
+        const listEl = document.getElementById('bList');
+        const filtersEl = document.getElementById('bFilters');
         let currentCat = 'all';
 
-        // 提取所有分类
+        // Build category pills
         const cats = [...new Set(BLOG_POSTS.map(p => p.category).filter(Boolean))];
         cats.forEach(cat => {
             const btn = document.createElement('button');
-            btn.className = 'blogs-pill';
+            btn.className = 'b-pill';
             btn.dataset.cat = cat;
             btn.textContent = cat;
-            pillsEl.appendChild(btn);
+            filtersEl.appendChild(btn);
         });
 
-        // 分类切换
-        pillsEl.addEventListener('click', e => {
-            if (!e.target.classList.contains('blogs-pill')) return;
-            pillsEl.querySelectorAll('.blogs-pill').forEach(b => b.classList.remove('active'));
+        filtersEl.addEventListener('click', e => {
+            if (!e.target.classList.contains('b-pill')) return;
+            filtersEl.querySelectorAll('.b-pill').forEach(b => b.classList.remove('active'));
             e.target.classList.add('active');
             currentCat = e.target.dataset.cat;
             render();
         });
+
+        const MONTHS = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
         function render() {
             const filtered = currentCat === 'all'
@@ -262,32 +297,32 @@
                 : BLOG_POSTS.filter(p => p.category === currentCat);
 
             if (filtered.length === 0) {
-                listEl.innerHTML = '<div class="blogs-empty">该分类暂无文章</div>';
+                listEl.innerHTML = '<div class="b-empty"><div class="b-empty-icon">✦</div><p>该分类暂无文章</p></div>';
                 return;
             }
 
             listEl.innerHTML = filtered.map(post => {
-                const date = post.date ? post.date.split('-') : ['', '', ''];
-                const year = date[0], month = date[1] || '', day = date[2] || '';
-                return '<a class="blogs-item" href="blog-post.html?id=' + escapeHtml(post.id) + '">' +
-                    '<div class="blogs-item-left">' +
-                        '<div class="blogs-item-day">' + day + '</div>' +
-                        '<div class="blogs-item-month">' + month + '月</div>' +
-                        '<div class="blogs-item-year">' + year + '</div>' +
+                const parts = post.date ? post.date.split('-') : ['', '', ''];
+                const year = parts[0], monNum = parseInt(parts[1]) || 0, day = parts[2] || '';
+                return '<a class="b-item" href="blog-post.html?id=' + esc(post.id) + '">' +
+                    '<div class="b-item-date">' +
+                        '<div class="b-item-day">' + day + '</div>' +
+                        '<div class="b-item-mon">' + MONTHS[monNum] + '</div>' +
+                        '<div class="b-item-year">' + year + '</div>' +
                     '</div>' +
-                    '<div class="blogs-item-right">' +
-                        '<div class="blogs-item-title">' + escapeHtml(post.title) + '</div>' +
-                        '<div class="blogs-item-excerpt">' + escapeHtml(post.excerpt) + '</div>' +
-                        '<div class="blogs-item-meta">' +
-                            '<span class="blogs-item-cat">' + escapeHtml(post.category) + '</span>' +
-                            '<span class="blogs-item-arrow">→</span>' +
+                    '<div class="b-item-body">' +
+                        '<div class="b-item-title">' + esc(post.title) + '</div>' +
+                        '<div class="b-item-excerpt">' + esc(post.excerpt) + '</div>' +
+                        '<div class="b-item-meta">' +
+                            '<span class="b-item-cat">' + esc(post.category) + '</span>' +
+                            '<span class="b-item-read">阅读全文</span>' +
                         '</div>' +
                     '</div>' +
                 '</a>';
             }).join('');
         }
 
-        function escapeHtml(str) {
+        function esc(str) {
             if (!str) return '';
             return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]));
         }
