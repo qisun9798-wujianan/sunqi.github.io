@@ -28,6 +28,21 @@
             display: flex; align-items: center; justify-content: space-between; gap: 1rem;
             flex-wrap: wrap;
         }
+        .nav-back {
+            display: inline-flex; align-items: center; gap: 6px;
+            text-decoration: none; color: var(--ink-faint);
+            font-size: var(--fs-sm); font-weight: 500;
+            transition: color .25s; letter-spacing: .02em;
+            white-space: nowrap;
+            padding: 6px 12px; border-radius: 100px;
+            border: 1px solid transparent;
+            transition: all .25s;
+        }
+        .nav-back:hover {
+            color: var(--blush);
+            border-color: var(--blush-soft);
+            background: var(--blush-wash);
+        }
         .nav-brand {
             display: flex; align-items: center; gap: 10px;
             text-decoration: none; color: var(--ink);
@@ -311,10 +326,13 @@
         <!-- Header -->
         <header class="nav-header">
             <div class="nav-header-inner">
-                <a class="nav-brand" href="index.html">
-                    <div class="nav-brand-icon">🤖</div>
-                    <div class="nav-brand-text">红泥小火炉 <span>AI 导航</span></div>
-                </a>
+                <div style="display:flex;align-items:center;gap:clamp(6px,1vw,14px);flex-wrap:wrap;">
+                    <a class="nav-back" href="index.html#blog">← 返回</a>
+                    <a class="nav-brand" href="index.html">
+                        <div class="nav-brand-icon">🤖</div>
+                        <div class="nav-brand-text">红泥小火炉 <span>AI 导航</span></div>
+                    </a>
+                </div>
                 <div class="nav-search-wrap">
                     <input class="nav-search" type="text" id="searchInput" placeholder="搜索 AI 工具...">
                 </div>
