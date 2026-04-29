@@ -32,12 +32,35 @@
             display: flex; align-items: center; justify-content: space-between;
         }
         .b-back {
-            display: inline-flex; align-items: center; gap: 6px;
-            text-decoration: none; color: var(--ink-faint);
-            font-size: var(--fs-sm); font-weight: 500;
-            transition: color .25s; letter-spacing: .02em;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 18px; border-radius: 100px;
+            background: rgba(255,255,255,.45);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            text-decoration: none; color: var(--ink-mid);
+            font-size: 13px; font-weight: 500;
+            letter-spacing: .06em;
+            transition: all .35s cubic-bezier(.22,1,.36,1);
         }
-        .b-back:hover { color: var(--blush); }
+        .b-back svg {
+            width: 15px; height: 15px;
+            stroke: currentColor; stroke-width: 1.8;
+            fill: none; stroke-linecap: round; stroke-linejoin: round;
+            transition: transform .35s cubic-bezier(.22,1,.36,1);
+            opacity: .7;
+        }
+        .b-back:hover {
+            background: var(--blush-wash);
+            border-color: var(--blush-soft);
+            color: var(--blush);
+            box-shadow: 0 4px 14px rgba(232,120,138,.12);
+            transform: translateY(-1px);
+        }
+        .b-back:hover svg {
+            transform: translateX(-3px);
+            opacity: 1;
+        }
         .b-brand {
             font-family: var(--ff-display);
             font-size: var(--fs-body); font-weight: 700;
@@ -234,7 +257,7 @@
 <body>
     <header class="b-header">
         <div class="b-header-inner">
-            <a class="b-back" href="index.html#blog">← 返回</a>
+            <a class="b-back" href="index.html#blog"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>返回</a>
             <a class="b-brand" href="index.html">红泥小火炉 <span>Blog</span></a>
             <div style="width: 56px;"></div>
         </div>
