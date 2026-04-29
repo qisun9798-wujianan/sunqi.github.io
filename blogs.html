@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客 — 红泥小火炉</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/variables.css">
+    <style>
+        :root { --nav-pad: clamp(1.2rem, 3vw, 2.5rem); }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--ff-body);
+            color: var(--ink);
+            background: var(--cream);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header */
+        .blogs-header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(255,250,245,.88);
+            backdrop-filter: blur(16px) saturate(1.2);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .blogs-header-inner {
+            max-width: 800px; margin: 0 auto;
+            padding: var(--nav-pad);
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .blogs-back {
+            display: inline-flex; align-items: center; gap: 6px;
+            text-decoration: none; color: var(--ink-mid);
+            font-size: var(--fs-sm); transition: color .2s;
+        }
+        .blogs-back:hover { color: var(--blush); }
+        .blogs-brand {
+            font-family: var(--ff-display); font-size: var(--fs-body); font-weight: 700;
+            color: var(--ink); text-decoration: none;
+        }
+        .blogs-brand span { color: var(--blush); font-style: italic; font-weight: 400; }
+
+        /* Main */
+        .blogs-main {
+            max-width: 800px; margin: 0 auto;
+            padding: clamp(1.5rem, 4vh, 3rem) var(--nav-pad) clamp(3rem, 6vh, 5rem);
+        }
+
+        /* Title area */
+        .blogs-title-area {
+            text-align: center; margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
+        }
+        .blogs-title-area h1 {
+            font-family: var(--ff-display);
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            font-weight: 700; color: var(--ink);
+            margin-bottom: .4rem;
+        }
+        .blogs-title-area p {
+            font-size: var(--fs-sm); color: var(--ink-faint);
+        }
+
+        /* Category pills */
+        .blogs-pills {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            justify-content: center;
+            margin-bottom: clamp(1.5rem, 3vh, 2rem);
+        }
+        .blogs-pill {
+            padding: 6px 16px; border-radius: 100px;
+            font-size: var(--fs-sm); font-weight: 500;
+            background: rgba(255,255,255,.6);
+            border: 1px solid var(--glass-border);
+            color: var(--ink-mid);
+            cursor: pointer; transition: all .25s;
+            backdrop-filter: blur(6px);
+        }
+        .blogs-pill:hover {
+            background: var(--blush-wash);
+            border-color: var(--blush-soft);
+            color: var(--blush);
+        }
+        .blogs-pill.active {
+            background: linear-gradient(135deg, var(--blush), var(--wisteria-mid));
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 4px 14px rgba(232,120,138,.3);
+        }
+
+        /* Blog list */
+        .blogs-list {
+            display: flex; flex-direction: column; gap: clamp(.8rem, 1.5vh, 1.2rem);
+        }
+        .blogs-item {
+            display: flex; align-items: stretch; gap: clamp(1rem, 2vw, 1.5rem);
+            padding: clamp(1rem, 2vw, 1.4rem);
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            text-decoration: none; color: inherit;
+            transition: transform .35s var(--ease-spring), box-shadow .35s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .blogs-item::before {
+            content: ''; position: absolute; top: 0; left: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--blush), var(--wisteria-mid));
+            opacity: 0; transition: opacity .3s;
+        }
+        .blogs-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(80,50,110,.08), inset 0 1px 0 rgba(255,255,255,.4);
+        }
+        .blogs-item:hover::before { opacity: 1; }
+
+        .blogs-item-left {
+            display: flex; flex-direction: column; align-items: center;
+            gap: 4px; min-width: clamp(50px, 8vw, 70px); flex-shrink: 0;
+            padding-right: clamp(.8rem, 1.5vw, 1.2rem);
+            border-right: 1px solid var(--glass-border);
+        }
+        .blogs-item-day {
+            font-family: var(--ff-display);
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            font-weight: 700; color: var(--blush); line-height: 1;
+        }
+        .blogs-item-month {
+            font-size: var(--fs-xs); color: var(--ink-faint);
+            text-transform: uppercase; letter-spacing: .05em;
+        }
+        .blogs-item-year {
+            font-family: var(--ff-mono);
+            font-size: var(--fs-xs); color: var(--ink-whisper);
+        }
+
+        .blogs-item-right {
+            flex: 1; min-width: 0;
+            display: flex; flex-direction: column; gap: 4px;
+        }
+        .blogs-item-title {
+            font-family: var(--ff-display);
+            font-size: clamp(.95rem, 1.6vw, 1.15rem);
+            font-weight: 700; color: var(--ink);
+            line-height: 1.35;
+        }
+        .blogs-item-excerpt {
+            font-size: var(--fs-sm); color: var(--ink-mid);
+            line-height: 1.6;
+            display: -webkit-box; -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical; overflow: hidden;
+        }
+        .blogs-item-meta {
+            display: flex; align-items: center; gap: 8px;
+            margin-top: auto; padding-top: 6px;
+        }
+        .blogs-item-cat {
+            font-size: var(--fs-xs); font-weight: 600;
+            color: var(--blush);
+            padding: 2px 10px; border-radius: 100px;
+            background: var(--blush-wash);
+        }
+        .blogs-item-arrow {
+            margin-left: auto;
+            font-size: var(--fs-sm); color: var(--ink-whisper);
+            transition: transform .25s, color .25s;
+        }
+        .blogs-item:hover .blogs-item-arrow {
+            transform: translateX(4px); color: var(--blush);
+        }
+
+        /* Empty state */
+        .blogs-empty {
+            text-align: center; padding: 4rem 2rem;
+            color: var(--ink-faint); font-size: var(--fs-sm);
+        }
+
+        /* Footer */
+        .blogs-footer {
+            text-align: center; padding: 2rem var(--nav-pad);
+            border-top: 1px solid var(--glass-border);
+            color: var(--ink-faint); font-size: var(--fs-xs);
+        }
+
+        @media (max-width: 600px) {
+            .blogs-item { flex-direction: column; gap: .6rem; }
+            .blogs-item-left {
+                flex-direction: row; align-items: baseline; gap: 6px;
+                border-right: none; border-bottom: 1px solid var(--glass-border);
+                padding-right: 0; padding-bottom: .6rem; min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="blogs-header">
+        <div class="blogs-header-inner">
+            <a class="blogs-back" href="index.html#blog">← 返回</a>
+            <a class="blogs-brand" href="index.html">红泥小火炉 <span> Blog</span></a>
+            <div style="width: 48px;"></div>
+        </div>
+    </header>
+
+    <main class="blogs-main">
+        <div class="blogs-title-area">
+            <h1>博客文章</h1>
+            <p>设计与技术的思考记录</p>
+        </div>
+
+        <div class="blogs-pills" id="blogPills">
+            <button class="blogs-pill active" data-cat="all">全部</button>
+        </div>
+
+        <div class="blogs-list" id="blogList">
+            <div class="blogs-empty">加载中...</div>
+        </div>
+    </main>
+
+    <footer class="blogs-footer">
+        © 红泥小火炉 · 由 Notion 驱动
+    </footer>
+
+    <script>
+    (function() {
+        // 内联博客数据（同步自 Notion）
+        const BLOG_POSTS = [
+            {"id": "34f9d0de-ba05-8078-95a1-ca1accbca848", "title": "如何用设计讲好品牌故事", "date": "2026-04-27", "category": "设计思考", "excerpt": "从视觉语言到情感共鸣，探索品牌设计的核心方法论…", "url": "https://www.notion.so/34f9d0deba05807895a1ca1accbca848"}
+        ];
+
+        const listEl = document.getElementById('blogList');
+        const pillsEl = document.getElementById('blogPills');
+        let currentCat = 'all';
+
+        // 提取所有分类
+        const cats = [...new Set(BLOG_POSTS.map(p => p.category).filter(Boolean))];
+        cats.forEach(cat => {
+            const btn = document.createElement('button');
+            btn.className = 'blogs-pill';
+            btn.dataset.cat = cat;
+            btn.textContent = cat;
+            pillsEl.appendChild(btn);
+        });
+
+        // 分类切换
+        pillsEl.addEventListener('click', e => {
+            if (!e.target.classList.contains('blogs-pill')) return;
+            pillsEl.querySelectorAll('.blogs-pill').forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            currentCat = e.target.dataset.cat;
+            render();
+        });
+
+        function render() {
+            const filtered = currentCat === 'all'
+                ? BLOG_POSTS
+                : BLOG_POSTS.filter(p => p.category === currentCat);
+
+            if (filtered.length === 0) {
+                listEl.innerHTML = '<div class="blogs-empty">该分类暂无文章</div>';
+                return;
+            }
+
+            listEl.innerHTML = filtered.map(post => {
+                const date = post.date ? post.date.split('-') : ['', '', ''];
+                const year = date[0], month = date[1] || '', day = date[2] || '';
+                return '<a class="blogs-item" href="blog-post.html?id=' + escapeHtml(post.id) + '">' +
+                    '<div class="blogs-item-left">' +
+                        '<div class="blogs-item-day">' + day + '</div>' +
+                        '<div class="blogs-item-month">' + month + '月</div>' +
+                        '<div class="blogs-item-year">' + year + '</div>' +
+                    '</div>' +
+                    '<div class="blogs-item-right">' +
+                        '<div class="blogs-item-title">' + escapeHtml(post.title) + '</div>' +
+                        '<div class="blogs-item-excerpt">' + escapeHtml(post.excerpt) + '</div>' +
+                        '<div class="blogs-item-meta">' +
+                            '<span class="blogs-item-cat">' + escapeHtml(post.category) + '</span>' +
+                            '<span class="blogs-item-arrow">→</span>' +
+                        '</div>' +
+                    '</div>' +
+                '</a>';
+            }).join('');
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]));
+        }
+
+        render();
+    })();
+    </script>
+</body>
+</html>
