@@ -1,68 +1,16 @@
 [
   {
-    "id": "3509d0de-ba05-80a5-b10a-db7ddf8acc0f",
-    "name": "豆包",
-    "url": "https://doubao.com",
-    "category": "代码",
-    "description": "字节出品，功能全面",
-    "tags": [
-      "免费",
-      "中文"
-    ],
-    "rating": "⭐⭐⭐",
-    "logo": "https://www.google.com/s2/favicons?domain=doubao.com&sz=128"
-  },
-  {
-    "id": "3509d0de-ba05-8003-ae17-c92c04792dbc",
-    "name": "Kimi",
-    "url": "https://kimi.moonshot.cn",
-    "category": "代码",
-    "description": "超长上下文，国产标杆",
-    "tags": [
-      "免费",
-      "中文"
-    ],
-    "rating": "⭐⭐⭐",
-    "logo": "https://www.google.com/s2/favicons?domain=kimi.moonshot.cn&sz=128"
-  },
-  {
-    "id": "3509d0de-ba05-80a9-8ff4-ed293a8f11ce",
-    "name": "Claude",
-    "url": "https://claude.ai",
-    "category": "代码",
-    "description": "长文本理解最强，中文友好",
+    "id": "34f9d0de-ba05-800b-96b9-f97c2640fc76",
+    "name": "Midjourney",
+    "url": "https://www.midjourney.com",
+    "category": "图像",
+    "description": "AI 图像生成，文字描述生成高质量艺术图片",
     "tags": [
       "付费",
       "英文"
     ],
     "rating": "⭐⭐⭐",
-    "logo": "https://www.google.com/s2/favicons?domain=claude.ai&sz=128"
-  },
-  {
-    "id": "3509d0de-ba05-8028-b9e9-c7bf18a70990",
-    "name": "LiblibAI",
-    "url": "https://liblib.art",
-    "category": "图像",
-    "description": "国内最大的 AI 绘画模型社区",
-    "tags": [
-      "付费",
-      "中文"
-    ],
-    "rating": "⭐⭐⭐",
-    "logo": "https://www.google.com/s2/favicons?domain=liblib.art&sz=128"
-  },
-  {
-    "id": "3509d0de-ba05-8083-8b51-e0bb91176e45",
-    "name": "可灵 AI",
-    "url": "https://klingai.com",
-    "category": "视频",
-    "description": "快手出品，国产图像/视频双强",
-    "tags": [
-      "付费",
-      "中文"
-    ],
-    "rating": "⭐⭐⭐",
-    "logo": "https://www.google.com/s2/favicons?domain=klingai.com&sz=128"
+    "logo": "https://www.google.com/s2/favicons?domain=www.midjourney.com&sz=128"
   },
   {
     "id": "34f9d0de-ba05-8053-a0d3-e070d2a9a341",
@@ -78,16 +26,68 @@
     "logo": "https://www.google.com/s2/favicons?domain=jimeng.jianying.com&sz=128"
   },
   {
-    "id": "34f9d0de-ba05-800b-96b9-f97c2640fc76",
-    "name": "Midjourney",
-    "url": "https://www.midjourney.com",
+    "id": "3509d0de-ba05-8083-8b51-e0bb91176e45",
+    "name": "可灵 AI",
+    "url": "https://klingai.com",
+    "category": "视频",
+    "description": "快手出品，国产图像/视频双强",
+    "tags": [
+      "付费",
+      "中文"
+    ],
+    "rating": "⭐⭐⭐",
+    "logo": "https://www.google.com/s2/favicons?domain=klingai.com&sz=128"
+  },
+  {
+    "id": "3509d0de-ba05-8028-b9e9-c7bf18a70990",
+    "name": "LiblibAI",
+    "url": "https://liblib.art",
     "category": "图像",
-    "description": "AI 图像生成，文字描述生成高质量艺术图片",
+    "description": "国内最大的 AI 绘画模型社区",
+    "tags": [
+      "付费",
+      "中文"
+    ],
+    "rating": "⭐⭐⭐",
+    "logo": "https://www.google.com/s2/favicons?domain=liblib.art&sz=128"
+  },
+  {
+    "id": "3509d0de-ba05-80a9-8ff4-ed293a8f11ce",
+    "name": "Claude",
+    "url": "https://claude.ai",
+    "category": "代码",
+    "description": "长文本理解最强，中文友好",
     "tags": [
       "付费",
       "英文"
     ],
     "rating": "⭐⭐⭐",
-    "logo": "https://www.google.com/s2/favicons?domain=www.midjourney.com&sz=128"
+    "logo": "https://www.google.com/s2/favicons?domain=claude.ai&sz=128"
+  },
+  {
+    "id": "3509d0de-ba05-8003-ae17-c92c04792dbc",
+    "name": "Kimi",
+    "url": "https://kimi.moonshot.cn",
+    "category": "代码",
+    "description": "超长上下文，国产标杆",
+    "tags": [
+      "免费",
+      "中文"
+    ],
+    "rating": "⭐⭐⭐",
+    "logo": "https://www.google.com/s2/favicons?domain=kimi.moonshot.cn&sz=128"
+  },
+  {
+    "id": "3509d0de-ba05-80a5-b10a-db7ddf8acc0f",
+    "name": "豆包",
+    "url": "https://doubao.com",
+    "category": "代码",
+    "description": "字节出品，功能全面",
+    "tags": [
+      "免费",
+      "中文"
+    ],
+    "rating": "⭐⭐⭐",
+    "logo": "https://www.google.com/s2/favicons?domain=doubao.com&sz=128"
   }
 ]
