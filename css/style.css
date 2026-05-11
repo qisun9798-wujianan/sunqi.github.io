@@ -235,6 +235,9 @@ img { max-width: 100%; object-fit: contain; }
 .social-link.social-email:hover { box-shadow: 0 6px 20px rgba(91,141,239,.3); }
 .social-link.social-douyin:hover{ box-shadow: 0 6px 20px rgba(28,28,28,.25); }
 
+.social-link.social-bilibili { background: #00A1D6; border-color: #00A1D6; color: white; }
+.social-link.social-bilibili:hover { box-shadow: 0 6px 20px rgba(0,161,214,.3); }
+
 /* ===========================================
    P2 — ABOUT 关于我
    =========================================== */
