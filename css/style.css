@@ -1564,10 +1564,10 @@ img { max-width: 100%; object-fit: contain; }
     font-weight: 500;
 }
 .qr-modal-content img {
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: auto;
     border-radius: 12px;
-    object-fit: cover;
+    object-fit: contain;
     border: 1px solid var(--glass-border);
     box-shadow: 0 4px 16px rgba(80,50,110,.08);
 }
