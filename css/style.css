@@ -310,7 +310,7 @@ img { max-width: 100%; object-fit: contain; }
 .pip-pistachio { background: var(--pistachio); }
 
 /* ===========================================
-   P3 — EXPERIENCE 工作经历（时间轴）
+   P3 — MILESTONES 里程碑（卡片网格）
    =========================================== */
 .slide-exp {
     background:
@@ -319,6 +319,99 @@ img { max-width: 100%; object-fit: contain; }
         var(--cream);
 }
 
+/* 卡片网格 */
+.milestone-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(.8rem, 1.5vw, 1.4rem);
+    max-width: min(92vw, 960px);
+    width: 100%;
+    align-items: stretch;
+}
+
+@media (max-width: 900px) {
+    .milestone-grid { grid-template-columns: 1fr; max-width: min(85vw, 520px); }
+}
+
+/* 里程碑卡片 */
+.milestone-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1vh, 12px);
+    padding: clamp(1.2rem, 2vw, 1.8rem);
+    border-radius: 20px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform .4s var(--ease-spring), box-shadow .4s;
+    overflow: hidden;
+}
+
+.milestone-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blush), var(--wisteria-mid), var(--pistachio));
+    opacity: .7;
+}
+
+.milestone-card:nth-child(2)::before {
+    background: linear-gradient(90deg, var(--wisteria-mid), var(--pistachio), var(--blush));
+}
+
+.milestone-card:nth-child(3)::before {
+    background: linear-gradient(90deg, var(--pistachio), var(--blush), var(--wisteria-mid));
+}
+
+.milestone-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 36px rgba(80, 50, 110, .1), inset 0 1px 0 rgba(255, 255, 255, .5);
+}
+
+/* 卡片顶部：日期 + 序号 */
+.milestone-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2px;
+}
+
+.milestone-date {
+    font-family: var(--ff-mono);
+    font-size: var(--fs-xs);
+    color: var(--ink-faint);
+    letter-spacing: .1em;
+}
+
+.milestone-num {
+    font-family: var(--ff-display);
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 700;
+    color: var(--ink-whisper);
+    line-height: 1;
+    opacity: .4;
+}
+
+.milestone-title {
+    font-family: var(--ff-display);
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 2px;
+}
+
+.milestone-desc {
+    font-size: var(--fs-sm);
+    color: var(--ink-mid);
+    line-height: 1.7;
+    margin-bottom: 4px;
+}
+
+/* 旧时间轴样式保留（JS兼容） */
 .timeline {
     position: relative;
     max-width: min(85vw, 720px);
@@ -341,7 +434,6 @@ img { max-width: 100%; object-fit: contain; }
     transition: transform 2.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* 进入视口触发线条绘制 */
 .slide.visible .timeline::before {
     transform: translateX(-50%) scaleY(1);
 }
@@ -374,7 +466,6 @@ img { max-width: 100%; object-fit: contain; }
 .timeline-item:nth-child(odd)::before { right: -6px; }
 .timeline-item:nth-child(even)::before { left: -6px; }
 
-/* 节点依次弹出（配合线条绘制节奏） */
 .slide.visible .timeline-item:nth-child(1)::before {
     opacity: 1;
     transform: scale(1);
@@ -391,7 +482,6 @@ img { max-width: 100%; object-fit: contain; }
     transition-delay: 1.7s;
 }
 
-/* 节点弹出后的粉色脉冲光晕 */
 @keyframes dotPulse {
     0%, 100% { box-shadow: 0 0 0 0 rgba(232, 120, 138, 0.35); }
     50% { box-shadow: 0 0 0 10px rgba(232, 120, 138, 0); }
@@ -524,6 +614,20 @@ img { max-width: 100%; object-fit: contain; }
 .timeline-item:hover .tree-tag:nth-child(2) { transition-delay: .16s; }
 .timeline-item:hover .tree-tag:nth-child(3) { transition-delay: .24s; }
 .timeline-item:hover .tree-tag:nth-child(4) { transition-delay: .32s; }
+
+/* 里程碑卡片内标签始终可见 */
+.milestone-card .skill-tree {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+.milestone-card .tree-tag {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+.milestone-card .tree-tag::before {
+    transform: scale(1);
+}
 
 /* 标签 hover 动画 */
 .tree-tag:hover {
