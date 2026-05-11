@@ -323,23 +323,24 @@ img { max-width: 100%; object-fit: contain; }
 .milestone-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: clamp(.8rem, 1.5vw, 1.4rem);
-    max-width: min(92vw, 960px);
+    gap: clamp(1rem, 2vw, 1.8rem);
+    max-width: min(96vw, 1100px);
     width: 100%;
     align-items: stretch;
 }
 
 @media (max-width: 900px) {
-    .milestone-grid { grid-template-columns: 1fr; max-width: min(85vw, 520px); }
+    .milestone-grid { grid-template-columns: 1fr; max-width: min(90vw, 560px); }
 }
 
-/* 里程碑卡片 */
-.milestone-card {
+/* 里程碑卡片（覆盖旧时间轴样式） */
+.milestone-card,
+.milestone-card.timeline-item {
     position: relative;
     display: flex;
     flex-direction: column;
     gap: clamp(8px, 1vh, 12px);
-    padding: clamp(1.2rem, 2vw, 1.8rem);
+    padding: clamp(1.2rem, 2vw, 1.8rem) !important;
     border-radius: 20px;
     background: var(--glass);
     border: 1px solid var(--glass-border);
@@ -347,6 +348,13 @@ img { max-width: 100%; object-fit: contain; }
     -webkit-backdrop-filter: blur(12px);
     transition: transform .4s var(--ease-spring), box-shadow .4s;
     overflow: hidden;
+    width: 100% !important;
+    margin-left: 0 !important;
+    text-align: left !important;
+}
+
+.milestone-card.timeline-item::before {
+    display: none !important;
 }
 
 .milestone-card::before {
@@ -383,7 +391,8 @@ img { max-width: 100%; object-fit: contain; }
     font-family: var(--ff-mono);
     font-size: var(--fs-xs);
     color: var(--ink-faint);
-    letter-spacing: .1em;
+    letter-spacing: .05em;
+    white-space: nowrap;
 }
 
 .milestone-num {
@@ -621,9 +630,19 @@ img { max-width: 100%; object-fit: contain; }
     transform: translateY(0);
     pointer-events: auto;
 }
+.milestone-card .tree-branches {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 100%;
+    gap: 6px;
+}
 .milestone-card .tree-tag {
     opacity: 1;
     transform: translateY(0) scale(1);
+    font-size: 11px;
+    padding: 4px 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .milestone-card .tree-tag::before {
     transform: scale(1);
