@@ -1359,7 +1359,7 @@ img { max-width: 100%; object-fit: contain; }
 .contact-icon.contact-email { background: #5B8DEF; border-color: #5B8DEF; }
 .contact-icon.contact-douyin{ background: #1C1C1C; border-color: #1C1C1C; }
 
-.contact-icon.contact-xhs svg, .contact-icon.contact-xhs img { filter: brightness(0) invert(1); }
+.contact-icon.contact-xhs img { width: 60%; height: 60%; object-fit: contain; border-radius: 3px; }
 .contact-icon.contact-email svg { fill: white; }
 .contact-icon.contact-douyin svg { fill: white; }
 
