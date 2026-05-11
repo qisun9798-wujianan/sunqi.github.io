@@ -1358,35 +1358,6 @@ img { max-width: 100%; object-fit: contain; }
     letter-spacing: .1em;
 }
 
-/* GitHub 数据展示 */
-.github-stats {
-    display: flex;
-    gap: clamp(1rem, 2vw, 2rem);
-    justify-content: center;
-    margin-top: clamp(.5rem, 1vh, 1rem);
-}
-
-.github-stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-}
-
-.github-stat-num {
-    font-family: var(--ff-display);
-    font-size: var(--fs-h3);
-    font-weight: 700;
-    color: var(--blush);
-    line-height: 1;
-}
-
-.github-stat-label {
-    font-size: var(--fs-xs);
-    color: var(--ink-faint);
-    letter-spacing: .1em;
-}
-
 /* 结尾语 */
 .end-narrative {
     font-family: var(--ff-display);

@@ -1,6 +1,6 @@
 /**
  * 孙琦个人网站 — 主交互逻辑
- * 功能：导航、进度条、视频弹层、GitHub 数据获取
+ * 功能：导航、进度条、视频弹层
  */
 
 (function () {
@@ -103,29 +103,6 @@
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && videoModal.classList.contains('active')) closeVideo();
     });
-
-    /* ========================================
-       4. GitHub 数据获取（公开 API）
-       ======================================== */
-    const GITHUB_USERNAME = 'qisun9798-wujianan'; // GitHub 用户名
-
-    async function fetchGitHubStats() {
-        if (GITHUB_USERNAME === 'YOUR_GITHUB_USERNAME') return;
-        try {
-            const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}`);
-            if (!res.ok) throw new Error('GitHub API 请求失败');
-            const data = await res.json();
-
-            const reposEl = document.getElementById('ghRepos');
-            const followersEl = document.getElementById('ghFollowers');
-            if (reposEl) reposEl.textContent = data.public_repos || 0;
-            if (followersEl) followersEl.textContent = data.followers || 0;
-        } catch (err) {
-            console.log('GitHub 数据获取失败:', err);
-        }
-    }
-
-    fetchGitHubStats();
 
     /* ========================================
        5. 平滑滚动到锚点（内部链接）
