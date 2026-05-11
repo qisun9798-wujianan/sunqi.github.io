@@ -228,4 +228,26 @@
         });
     });
 
+    /* ========================================
+       7. 微信二维码弹窗
+       ======================================== */
+    const qrModal = document.getElementById('qrModal');
+    const qrTrigger = document.getElementById('wechatTrigger');
+    const qrClose = document.getElementById('qrClose');
+
+    if (qrTrigger && qrModal) {
+        qrTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            qrModal.classList.add('active');
+        });
+    }
+    if (qrClose && qrModal) {
+        qrClose.addEventListener('click', () => qrModal.classList.remove('active'));
+    }
+    if (qrModal) {
+        qrModal.addEventListener('click', (e) => {
+            if (e.target === qrModal) qrModal.classList.remove('active');
+        });
+    }
+
 })();

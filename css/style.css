@@ -1490,6 +1490,94 @@ img { max-width: 100%; object-fit: contain; }
 .contact-link:hover .contact-icon.contact-email { box-shadow: 0 6px 20px rgba(91,141,239,.3); }
 .contact-link:hover .contact-icon.contact-douyin{ box-shadow: 0 6px 20px rgba(28,28,28,.25); }
 
+.contact-icon.contact-wechat { background: #07C160; border-color: #07C160; }
+.contact-icon.contact-wechat svg { fill: white; }
+.contact-link:hover .contact-icon.contact-wechat { box-shadow: 0 6px 20px rgba(7,193,96,.3); }
+
+/* 微信二维码弹窗 */
+.qr-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10002;
+    background: rgba(255, 250, 245, .6);
+    backdrop-filter: blur(20px) saturate(1.2);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .4s var(--ease-expo);
+}
+.qr-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.qr-modal-inner {
+    position: relative;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 20px 50px rgba(80, 50, 110, .12);
+    transform: scale(.88);
+    transition: transform .45s var(--ease-spring);
+    text-align: center;
+    max-width: min(90vw, 340px);
+}
+.qr-modal.active .qr-modal-inner {
+    transform: scale(1);
+}
+.qr-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.6);
+    border: 1px solid var(--glass-border);
+    color: var(--ink-mid);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .3s var(--ease-spring);
+    padding: 0;
+}
+.qr-modal-close:hover {
+    background: white;
+    transform: scale(1.1);
+    color: var(--ink);
+}
+.qr-modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+.qr-modal-tip {
+    font-size: var(--fs-sm);
+    color: var(--ink-light);
+    font-weight: 500;
+}
+.qr-modal-content img {
+    width: 200px;
+    height: 200px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 16px rgba(80,50,110,.08);
+}
+.qr-modal-name {
+    font-family: var(--ff-display);
+    font-size: var(--fs-body);
+    font-weight: 700;
+    color: var(--ink);
+}
+
 .contact-label {
     font-family: var(--ff-display);
     font-size: var(--fs-body);
