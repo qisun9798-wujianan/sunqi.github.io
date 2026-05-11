@@ -226,6 +226,15 @@ img { max-width: 100%; object-fit: contain; }
     fill: currentColor;
 }
 
+/* 品牌色社交图标（彩色圆底 + 白图标） */
+.social-link.social-xhs   { background: #FF2442; border-color: #FF2442; color: white; }
+.social-link.social-email { background: #5B8DEF; border-color: #5B8DEF; color: white; }
+.social-link.social-douyin{ background: #1C1C1C; border-color: #1C1C1C; color: white; }
+
+.social-link.social-xhs:hover   { box-shadow: 0 6px 20px rgba(255,36,66,.3); }
+.social-link.social-email:hover { box-shadow: 0 6px 20px rgba(91,141,239,.3); }
+.social-link.social-douyin:hover{ box-shadow: 0 6px 20px rgba(28,28,28,.25); }
+
 /* ===========================================
    P2 — ABOUT 关于我
    =========================================== */
@@ -1344,6 +1353,19 @@ img { max-width: 100%; object-fit: contain; }
 .contact-link:hover .contact-icon svg {
     fill: var(--blush);
 }
+
+/* 品牌色联系图标 */
+.contact-icon.contact-xhs   { background: #FF2442; border-color: #FF2442; }
+.contact-icon.contact-email { background: #5B8DEF; border-color: #5B8DEF; }
+.contact-icon.contact-douyin{ background: #1C1C1C; border-color: #1C1C1C; }
+
+.contact-icon.contact-xhs svg, .contact-icon.contact-xhs img { filter: brightness(0) invert(1); }
+.contact-icon.contact-email svg { fill: white; }
+.contact-icon.contact-douyin svg { fill: white; }
+
+.contact-link:hover .contact-icon.contact-xhs   { box-shadow: 0 6px 20px rgba(255,36,66,.3); }
+.contact-link:hover .contact-icon.contact-email { box-shadow: 0 6px 20px rgba(91,141,239,.3); }
+.contact-link:hover .contact-icon.contact-douyin{ box-shadow: 0 6px 20px rgba(28,28,28,.25); }
 
 .contact-label {
     font-family: var(--ff-display);
