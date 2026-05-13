@@ -382,29 +382,9 @@ img { max-width: 100%; object-fit: contain; }
     box-shadow: 0 14px 36px rgba(80, 50, 110, .1), inset 0 1px 0 rgba(255, 255, 255, .5);
 }
 
-/* 卡片顶部：日期 + 序号 */
+/* 卡片顶部：日期 + 序号（已隐藏） */
 .milestone-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2px;
-}
-
-.milestone-date {
-    font-family: var(--ff-mono);
-    font-size: var(--fs-xs);
-    color: var(--ink-faint);
-    letter-spacing: .05em;
-    white-space: nowrap;
-}
-
-.milestone-num {
-    font-family: var(--ff-display);
-    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
-    font-weight: 700;
-    color: var(--ink-whisper);
-    line-height: 1;
-    opacity: .4;
+    display: none;
 }
 
 .milestone-title {
