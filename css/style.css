@@ -751,14 +751,12 @@ img { max-width: 100%; object-fit: contain; }
         radial-gradient(ellipse at 70% 30%, rgba(253, 232, 236, .4) 0%, transparent 50%),
         radial-gradient(ellipse at 30% 70%, rgba(235, 231, 245, .35) 0%, transparent 50%),
         var(--cream);
-    overflow-y: auto;
-    overflow-x: hidden;
 }
 
 .slide-works .slide-content {
-    padding-top: clamp(3rem, 8vh, 5rem);
-    padding-bottom: clamp(2rem, 5vh, 3rem);
     justify-content: flex-start;
+    padding-top: clamp(2.5rem, 6vh, 4rem);
+    padding-bottom: clamp(1rem, 3vh, 2rem);
 }
 
 .work-section {
@@ -767,24 +765,24 @@ img { max-width: 100%; object-fit: contain; }
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: clamp(8px, 1vh, 12px);
+    gap: clamp(2px, .4vh, 4px);
 }
 
 .work-section + .work-section {
-    margin-top: clamp(1.5rem, 3vh, 2.5rem);
+    margin-top: clamp(.2rem, .5vh, .4rem);
 }
 
 /* 账号标签 */
 .work-account-tag {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 6px 16px;
+    gap: 6px;
+    padding: 4px 12px;
     border-radius: 100px;
     background: var(--glass);
     border: 1px solid var(--glass-border);
     backdrop-filter: blur(8px);
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 .work-account-dot {
@@ -816,12 +814,12 @@ img { max-width: 100%; object-fit: contain; }
 /* 精选大卡片网格 */
 .work-grid-featured {
     grid-template-columns: 1fr;
-    max-width: min(70vw, 560px);
+    max-width: min(38vw, 300px);
 }
 
 /* 精选大卡片 */
 .work-card-featured {
-    border-radius: clamp(14px, 2vw, 22px);
+    border-radius: clamp(12px, 1.6vw, 18px);
 }
 
 .work-card-featured .work-cover-wrap {
@@ -829,16 +827,26 @@ img { max-width: 100%; object-fit: contain; }
 }
 
 .work-card-featured .work-info {
-    padding: clamp(.8rem, 1.2vw, 1.2rem);
-    gap: clamp(4px, .3vh, 6px);
-}
-
-.work-card-featured .work-title {
-    font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+    padding: 6px 10px;
+    gap: 2px;
 }
 
 .work-card-featured .work-desc {
-    font-size: var(--fs-sm);
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.work-card-featured .work-tag {
+    font-size: 10px;
+    padding: 2px 8px;
+}
+
+.work-card-featured .work-title {
+    font-size: var(--fs-body);
+}
+
+.work-card-featured .work-desc {
+    font-size: var(--fs-xs);
 }
 
 @media (max-width: 900px) {
@@ -864,7 +872,7 @@ img { max-width: 100%; object-fit: contain; }
 .work-cover-wrap {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
     background: linear-gradient(135deg, var(--blush-pale), var(--wisteria-pale));
 }
@@ -911,10 +919,25 @@ img { max-width: 100%; object-fit: contain; }
 }
 
 .work-info {
-    padding: clamp(.6rem, 1vw, 1rem);
+    padding: clamp(.4rem, .7vw, .7rem);
     display: flex;
     flex-direction: column;
-    gap: clamp(2px, .2vh, 4px);
+    gap: clamp(1px, .15vh, 3px);
+}
+
+/* 紧凑卡片（只显示标题） */
+.work-title-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 6px 8px;
+    background: linear-gradient(to top, rgba(0,0,0,.55) 0%, transparent 100%);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.3;
+    pointer-events: none;
 }
 
 .work-title {
