@@ -311,6 +311,7 @@ img { max-width: 100%; object-fit: contain; }
 .pip-blush { background: var(--blush); }
 .pip-wisteria { background: var(--wisteria); }
 .pip-pistachio { background: var(--pistachio); }
+.pip-honey   { background: var(--honey); }
 
 /* ===========================================
    P3 — MILESTONES 里程碑（卡片网格）
