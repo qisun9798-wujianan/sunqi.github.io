@@ -1126,7 +1126,7 @@ img { max-width: 100%; object-fit: contain; }
 
 .blog-hub-tools::after {
     background: linear-gradient(90deg,
-        var(--wisteria-mid) 0%,
+        #FF9F43 0%,
         var(--pistachio) 50%,
         var(--blush-soft) 100%);
 }
@@ -1194,11 +1194,11 @@ img { max-width: 100%; object-fit: contain; }
 }
 
 .tools-logo {
-    background: linear-gradient(135deg, var(--wisteria-mid), var(--pistachio));
-    box-shadow: 0 4px 14px rgba(139,92,246,.2);
+    background: linear-gradient(135deg, #FF9F43, var(--pistachio));
+    box-shadow: 0 4px 14px rgba(255,159,67,.25);
 }
 .blog-hub:hover .tools-logo {
-    box-shadow: 0 6px 20px rgba(139,92,246,.3);
+    box-shadow: 0 6px 20px rgba(255,159,67,.35);
 }
 
 /* ---- 标题与描述 ---- */
@@ -1330,12 +1330,12 @@ img { max-width: 100%; object-fit: contain; }
 
 /* 工具卡片用紫绿渐变按钮 */
 .blog-hub-tools .hub-action-btn {
-    background: linear-gradient(135deg, var(--wisteria-mid), var(--pistachio));
-    box-shadow: 0 4px 16px rgba(139,92,246,.25);
+    background: linear-gradient(135deg, #FF9F43, var(--pistachio));
+    box-shadow: 0 4px 16px rgba(255,159,67,.25);
 }
 
 .blog-hub-tools:hover .hub-action-btn {
-    box-shadow: 0 6px 24px rgba(139,92,246,.35);
+    box-shadow: 0 6px 24px rgba(255,159,67,.35);
 }
 
 .hub-arrow {
