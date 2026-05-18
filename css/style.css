@@ -753,12 +753,84 @@ img { max-width: 100%; object-fit: contain; }
         var(--cream);
 }
 
+.work-section {
+    width: 100%;
+    max-width: min(92vw, 960px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(8px, 1vh, 12px);
+}
+
+.work-section + .work-section {
+    margin-top: clamp(1.5rem, 3vh, 2.5rem);
+}
+
+/* 账号标签 */
+.work-account-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 100px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(8px);
+    margin-bottom: 4px;
+}
+
+.work-account-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.work-account-name {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.work-account-desc {
+    font-size: var(--fs-xs);
+    color: var(--ink-faint);
+}
+
+/* 普通网格 */
 .work-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: clamp(.8rem, 1.5vw, 1.4rem);
-    max-width: min(92vw, 960px);
     width: 100%;
+}
+
+/* 精选大卡片网格 */
+.work-grid-featured {
+    grid-template-columns: 1fr;
+    max-width: min(70vw, 560px);
+}
+
+/* 精选大卡片 */
+.work-card-featured {
+    border-radius: clamp(14px, 2vw, 22px);
+}
+
+.work-card-featured .work-cover-wrap {
+    aspect-ratio: 16 / 9;
+}
+
+.work-card-featured .work-info {
+    padding: clamp(.8rem, 1.2vw, 1.2rem);
+    gap: clamp(4px, .3vh, 6px);
+}
+
+.work-card-featured .work-title {
+    font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+}
+
+.work-card-featured .work-desc {
+    font-size: var(--fs-sm);
 }
 
 @media (max-width: 900px) {
