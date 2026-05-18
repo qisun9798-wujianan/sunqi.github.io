@@ -751,6 +751,14 @@ img { max-width: 100%; object-fit: contain; }
         radial-gradient(ellipse at 70% 30%, rgba(253, 232, 236, .4) 0%, transparent 50%),
         radial-gradient(ellipse at 30% 70%, rgba(235, 231, 245, .35) 0%, transparent 50%),
         var(--cream);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.slide-works .slide-content {
+    padding-top: clamp(3rem, 8vh, 5rem);
+    padding-bottom: clamp(2rem, 5vh, 3rem);
+    justify-content: flex-start;
 }
 
 .work-section {
