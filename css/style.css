@@ -787,8 +787,8 @@ img { max-width: 100%; object-fit: contain; }
 
 .work-account-dot {
     position: relative;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     flex-shrink: 0;
 }
@@ -803,13 +803,13 @@ img { max-width: 100%; object-fit: contain; }
     height: 100%;
     border-radius: 50%;
     background: inherit;
-    opacity: 0.35;
+    opacity: 0.3;
     animation: dotBreathe 2.4s ease-in-out infinite;
 }
 
 @keyframes dotBreathe {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.35; }
-    50% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+    50% { transform: translate(-50%, -50%) scale(1.8); opacity: 0; }
 }
 
 .work-account-name {
