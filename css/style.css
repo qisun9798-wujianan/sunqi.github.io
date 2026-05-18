@@ -755,8 +755,8 @@ img { max-width: 100%; object-fit: contain; }
 
 .slide-works .slide-content {
     justify-content: flex-start;
-    padding-top: clamp(2.5rem, 6vh, 4rem);
-    padding-bottom: clamp(1rem, 3vh, 2rem);
+    padding-top: clamp(1.5rem, 3vh, 2rem);
+    padding-bottom: clamp(.5rem, 1.5vh, 1rem);
 }
 
 .work-section {
@@ -769,7 +769,7 @@ img { max-width: 100%; object-fit: contain; }
 }
 
 .work-section + .work-section {
-    margin-top: clamp(.2rem, .5vh, .4rem);
+    margin-top: clamp(.1rem, .3vh, .2rem);
 }
 
 /* 账号标签 */
@@ -814,7 +814,7 @@ img { max-width: 100%; object-fit: contain; }
 /* 精选大卡片网格 */
 .work-grid-featured {
     grid-template-columns: 1fr;
-    max-width: min(38vw, 300px);
+    max-width: min(32vw, 340px);
 }
 
 /* 精选大卡片 */
@@ -826,19 +826,9 @@ img { max-width: 100%; object-fit: contain; }
     aspect-ratio: 16 / 9;
 }
 
-.work-card-featured .work-info {
-    padding: 6px 10px;
-    gap: 2px;
-}
-
-.work-card-featured .work-desc {
-    font-size: 11px;
-    line-height: 1.4;
-}
-
-.work-card-featured .work-tag {
-    font-size: 10px;
-    padding: 2px 8px;
+.work-card-featured .work-title-overlay {
+    font-size: 14px;
+    padding: 10px 12px;
 }
 
 .work-card-featured .work-title {
@@ -872,7 +862,7 @@ img { max-width: 100%; object-fit: contain; }
 .work-cover-wrap {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16 / 10;
     overflow: hidden;
     background: linear-gradient(135deg, var(--blush-pale), var(--wisteria-pale));
 }
