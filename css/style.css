@@ -1150,12 +1150,54 @@ img { max-width: 100%; object-fit: contain; }
 
 /* ---- 行动按钮 ---- */
 .hub-action {
-    margin-top: clamp(8px, 1.2vh, 14px);
-    padding-top: clamp(8px, 1vh, 12px);
-    border-top: 1px solid rgba(220,210,200,.25);
+    margin-top: auto;
+    padding-top: clamp(12px, 2vh, 18px);
     width: 100%;
     display: flex;
     justify-content: center;
+}
+
+.hub-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 32px;
+    border-radius: 100px;
+    background: linear-gradient(135deg, var(--blush), var(--wisteria-mid));
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    box-shadow: 0 4px 16px rgba(232,120,138,.3);
+    transition: all .35s cubic-bezier(.22,1,.36,1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.hub-action-btn::after {
+    content: '→';
+    transition: transform .3s cubic-bezier(.22,1,.36,1);
+    display: inline-block;
+}
+
+.blog-hub:hover .hub-action-btn {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(232,120,138,.4);
+}
+
+.blog-hub:hover .hub-action-btn::after {
+    transform: translateX(4px);
+}
+
+/* 工具卡片用紫绿渐变按钮 */
+.blog-hub-tools .hub-action-btn {
+    background: linear-gradient(135deg, var(--wisteria-mid), var(--pistachio));
+    box-shadow: 0 4px 16px rgba(139,92,246,.25);
+}
+
+.blog-hub-tools:hover .hub-action-btn {
+    box-shadow: 0 6px 24px rgba(139,92,246,.35);
 }
 
 .hub-arrow {
