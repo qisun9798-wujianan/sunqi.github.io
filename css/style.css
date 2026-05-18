@@ -930,6 +930,22 @@ img { max-width: 100%; object-fit: contain; }
     pointer-events: none;
 }
 
+/* 查看更多链接 */
+.work-more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--fs-sm);
+    color: var(--blush);
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: clamp(4px, .5vh, 6px);
+    transition: gap .3s ease;
+}
+.work-more-link:hover {
+    gap: 8px;
+}
+
 .work-title {
     font-family: var(--ff-display);
     font-size: var(--fs-body);
